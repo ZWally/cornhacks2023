@@ -1,52 +1,55 @@
 import React from 'react';
 import { makeStyles, Theme, createStyles } from '@material-ui/core/styles';
-import Card from '@material-ui/core/Card';
-import CardContent from '@material-ui/core/CardContent';
-import Tabs from '@material-ui/core/Tabs';
-import Tab from '@material-ui/core/Tab';
+import { Card, CardContent, Tabs, Tab } from '@material-ui/core';
+
+enum TabOption {
+  USERS,
+  PERMISSIONS,
+}
 
 const useStyles = makeStyles((theme: Theme) =>
   createStyles({
-    root: {
+    rootContainer: {
       display: 'flex',
       justifyContent: 'center',
       width: '100%',
     },
-    card: {
-    marginTop:'10px',
+    cardContainer: {
       width: '95%',
+      marginTop: '10px',
     },
-    tab: {
+    tabLabel: {
       fontSize: theme.typography.pxToRem(20),
     },
   }),
 );
 
-interface Props {
-  // Add any necessary props
-}
-
-const TabsContainer: React.FC<Props> = (props) => {
+const TabsContainer: React.FC = () => {
   const classes = useStyles();
-  const [value, setValue] = React.useState(0);
+  const [selectedTab, setSelectedTab] = React.useState(TabOption.USERS);
 
-  const handleChange = (event: React.ChangeEvent<{}>, newValue: number) => {
-    setValue(newValue);
+  const handleTabChange = (event: React.ChangeEvent<{}>, newValue: TabOption) => {
+    setSelectedTab(newValue);
   };
 
   return (
-    <div className={classes.root}>
-      <Card className={classes.card}>
-        <Tabs value={value} onChange={handleChange}>
-          <Tab label="Users" className={classes.tab} />
-          <Tab label="Roles" className={classes.tab} />
+    <div className={classes.rootContainer}>
+      <Card className={classes.cardContainer}>
+        <Tabs value={selectedTab} onChange={handleTabChange}>
+          <Tab label="Users" value={TabOption.USERS} className={classes.tabLabel} />
+          <Tab label="Permissions" value={TabOption.PERMISSIONS} className={classes.tabLabel} />
         </Tabs>
         <CardContent>
-          {/* Add additional components here */}
+          {selectedTab === TabOption.USERS ? (
+            <div>{/* Render the Users component here */}</div>
+          ) : (
+            <div>{/* Render the Permissions component here */}</div>
+          )}
         </CardContent>
       </Card>
     </div>
   );
 };
+
 
 export default TabsContainer;
