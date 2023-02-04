@@ -4,3 +4,5 @@ type App = {
     roleIds: string []
     permissionIds: string []
 }
+
+export default App;

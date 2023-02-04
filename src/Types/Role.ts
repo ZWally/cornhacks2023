@@ -3,3 +3,5 @@ type Role = {
     name: string
     permissionIds: string []
 }
+
+export default Role;

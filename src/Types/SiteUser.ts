@@ -4,3 +4,5 @@ type SiteUser = {
     email: string
     appIds: string []
 }
+
+export default SiteUser;

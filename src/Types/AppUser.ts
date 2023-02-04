@@ -3,3 +3,5 @@ type AppUser = {
     roleId: string
     authId: string
 }
+
+export default AppUser;
