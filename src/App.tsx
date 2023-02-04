@@ -4,6 +4,7 @@ import Banner from './Components/Banner';
 import './App.css';
 import { BrowserRouter } from 'react-router-dom';
 import { Route, Routes } from 'react-router';
+import TabsContainer from './Components/TabContainer';
 
 function App() {
   return (
