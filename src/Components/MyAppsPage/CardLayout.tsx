@@ -1,8 +1,9 @@
 import { Grid, Card } from '@material-ui/core'
-import React from 'react';
-import { makeStyles, createStyles, Theme } from '@material-ui/core/styles';
 import CardContent from '@material-ui/core/CardContent';
 import App from "../../Types/App";
+import * as React from 'react';
+import Typography from '@material-ui/core';
+import { Button, CardActionArea, CardActions } from '@material-ui/core';
 
 interface Props {
   appList: App [];
@@ -24,7 +25,13 @@ const CardLayout: React.FC<Props> = ({ appList }) => {
 
   return (
     <body>
-        hehehehe
+        <Grid
+        container={true}
+        direction="row"
+        justifyContent="flex-start"
+        alignItems="flex-start">
+            {appList.map(appToCard)}
+        </Grid>
     </body>
   );
 };

@@ -40,10 +40,10 @@ const dummyApp4: App = {
 
 const dummyAppsList: App [] = [dummyApp1, dummyApp2, dummyApp3, dummyApp4];
 
-
 function MyAppPage() {
     return (
         <body>
+            <CardLayout appList={dummyAppsList}/>
         </body>
     );
 };
