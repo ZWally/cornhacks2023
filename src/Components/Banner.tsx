@@ -24,9 +24,11 @@ const Banner: React.FC = () => {
         <Typography variant="subtitle1">
           {firebaseUser?.displayName}
         </Typography>
+        <Link to='/playground' style={{textDecoration: 'none', color: 'white'}}>
         <IconButton color="inherit">
           <AccountCircle />
         </IconButton>
+        </Link>
       </Toolbar>
     </AppBar> }
     </>
