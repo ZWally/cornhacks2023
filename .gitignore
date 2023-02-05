@@ -25,3 +25,4 @@ yarn-error.log*
 package-lock.json
 *.log
 config.ts
+dummydocs.ts
