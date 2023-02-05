@@ -5,23 +5,21 @@ import TitleHeader from "./TitleHeader";
 import { getSiteUserById, getAppsById } from "../../utils/database";
 import SiteUser from "../../Types/SiteUser";
 import React, { useEffect } from "react";
+import { useAuthContext } from "../../Contexts/Authorization";
 
 function MyAppPage() {
-    const [siteUser, setSiteUser] = React.useState<SiteUser | null>(null);
     const [appList, setAppList] = React.useState<App [] | null>(null);
     const [loaded, setLoaded] = React.useState(false);
+    const {siteUser} = useAuthContext();
 
     useEffect(() => {
+        if (!siteUser) {
+            return;
+        }
         console.log("WARNING API CALL")
-        getSiteUserById('testUser').then(async fetchedSiteUser => {
-            setSiteUser(fetchedSiteUser);
-            setAppList(await getAppsById(fetchedSiteUser.appIds));
-            setLoaded(true);
-        });
+        getAppsById(siteUser.appIds).then(apps => setAppList(apps))
 
-    }, [])
-
-    
+    }, [siteUser])
 
     return (
         <div>
