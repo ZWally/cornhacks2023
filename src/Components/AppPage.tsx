@@ -40,8 +40,8 @@ const AppPage = () => {
     }, [appId])
     
     return (
-        <div>
-            <Typography variant='h2' ml={2} mb={1}>{app?.name}</Typography>
+        <div style={{width: '100%'}}>
+            <Typography variant='h4' my={4}>{ app ? app?.name : <div style={{height: '100%', width: "350px", borderRadius: '5px'}}>My Apps</div>}</Typography>
             <TabsContainer
                 usersComponent={app && <UsersTable app={app} setUsers={setUsers} users={users || []} roles={roles || []} />}
                 permissionsComponent={roles && permissions && <PermissionMatrix roles={roles} setRoles={setRoles} permissions={permissions} setPermissions={setPermissions}/>}

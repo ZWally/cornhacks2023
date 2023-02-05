@@ -121,7 +121,7 @@ export default function UsersTable({users, roles, setUsers, app}: UsersTableProp
 
 
   return (
-    <>
+    <div style={{margin: '20px'}}>
     <TableContainer component={Paper}>
       <Table >
         <TableHead>
@@ -154,15 +154,16 @@ export default function UsersTable({users, roles, setUsers, app}: UsersTableProp
             </TableRow>
           )}
         </TableBody>
-        <TableFooter>
-          <TableRow>
-            <Button variant="contained" style={{marginLeft: 20}}
+        <TableFooter >
+          <TableRow style={{}}>
+            <TableCell>
+            <Button variant="contained" style={{}}
               onClick={
                 (_) => {
                   setAddUserOpen(true);
                 }
               }
-            >Add User</Button>
+            >Add User</Button></TableCell>
             <TablePagination
               rowsPerPageOptions={[5, 10, 25, { label: 'All', value: -1 }]}
               colSpan={3}
@@ -184,6 +185,6 @@ export default function UsersTable({users, roles, setUsers, app}: UsersTableProp
       </Table>
     </TableContainer>
     <AddUserModal isOpen={addUserOpen} setIsOpen={setAddUserOpen} roles={roles} users={users} setUsers={setUsers} app={app}/>
-    </>
+    </div>
   );
 }

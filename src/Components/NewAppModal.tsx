@@ -45,7 +45,7 @@ const NewApplicationModal: React.FC<Props> = ({ fetchedSiteUser, setAppList, app
                     <AddIcon htmlColor='white' fontSize='large' />
                 </Fab>
             </IconButton>
-            <Dialog open={open} onClose={handleClose}>
+            <Dialog open={open} onClose={handleClose} style={{padding: '20px'}}>
                 <DialogTitle>New Application</DialogTitle>
                 <DialogContent>
                     <TextField

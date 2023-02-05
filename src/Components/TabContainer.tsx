@@ -26,7 +26,7 @@ const TabsContainer = ({usersComponent, permissionsComponent}: Props) => {
       width: '95%',
       marginTop: '10px',
       }}>
-        <Tabs value={selectedTab} onChange={handleTabChange}>
+        <Tabs value={selectedTab} onChange={handleTabChange} style={{margin: '20px'}}>
           <Tab label="Users" value={TabOption.USERS} style={{fontSize: '20px'}} />
           <Tab label="Permissions" value={TabOption.PERMISSIONS} style={{fontSize: '20px'}} />
         </Tabs>

@@ -13,12 +13,16 @@ import { AuthProvider } from './Contexts/Authorization';
 function App() {
   return (
     <AuthProvider>
-      <Banner/>
       <BrowserRouter>
+      <Banner/>
+      <div style={{display: 'flex', justifyContent: 'center', width: '100vw'}}>
+        <div style={{maxWidth: 1200, width: "100%"}}>
       <Routes>
         <Route path="/" element={<MyAppPage />}/>
         <Route path="/app/:appId" element={<AppPage />}/>
       </Routes>
+        </div>
+      </div>
       </BrowserRouter>
     </AuthProvider>
   );

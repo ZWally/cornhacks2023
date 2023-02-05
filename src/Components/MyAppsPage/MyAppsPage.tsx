@@ -23,13 +23,13 @@ function MyAppPage() {
     }, [siteUser])
 
     return (
-        <div>
+      <div style={{width: '100%'}}>
             <TitleHeader />
             {appList ? <CardLayout appList={appList} /> : <></>}
             <footer style={{ textAlign: "right", marginRight: '18px', maxHeight: '18px' }}>
                 {siteUser && appList && <NewApplicationModal appList={appList} setAppList={setAppList} fetchedSiteUser={siteUser}/>}
             </footer>
-        </div>
+      </div>
     );
 };
 

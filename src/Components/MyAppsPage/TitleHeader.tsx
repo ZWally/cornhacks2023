@@ -5,12 +5,8 @@ import Typography from '@mui/material/Typography';
 
 export default function TitleHeader() {
   return (
-    <Stack ml={1} mb={3} mt={2} width={300} color="primary">
-      <Container color="primary">
-        <Typography variant="h3" ml={1}>
+        <Typography variant="h4" my={4}>
             My Apps
         </Typography>
-      </Container>
-    </Stack>
   );
 }

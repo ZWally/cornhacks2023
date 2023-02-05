@@ -1,4 +1,4 @@
-import { Grid, Card } from '@mui/material';
+import { Grid, Card, Divider } from '@mui/material';
 import CardContent from '@mui/material/CardContent';
 import App from "../../Types/App";
 import * as React from 'react';
@@ -15,12 +15,12 @@ const appToCard = function (app: App) {
     return(
         <Grid item>
             <Link to={`/app/${app.id}`} style={{textDecoration: "none"}}>
-            <Card sx={{ minWidth: 275 }}>
-                <CardContent>
-                    <Typography variant="h4" component="div" mb={5}>
+            <Card sx={{ width: 275, height: 250 }}>
+                <CardContent sx={{m: 2}}>
+                    <Typography variant="h5" component="div" mb={3}>
                     {app.name}
                     </Typography>
-                    <Typography sx={{ mb: 1.5 }} color="text.secondary">
+                    <Typography color="text.secondary">
                     {app.description}
                     </Typography>
                 </CardContent>
