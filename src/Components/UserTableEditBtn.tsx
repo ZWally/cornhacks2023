@@ -2,6 +2,7 @@ import {Button, Autocomplete, Modal, Box, Typography, TextField} from "@mui/mate
 import React from "react"
 import { AppUserRow, roleFromId } from "./UsersTable"
 import Role from "../Types/Role"
+import { updateAppUser } from "../utils/database"
 
 type Props = {
     user: AppUserRow
@@ -19,6 +20,8 @@ const style = {
   boxShadow: 24,
   p: 4,
 };
+
+const getIdFromRole = (roles: Role [], roleName: string) => roles.find(role => role.name === roleName);
 
 const UserTableEditBtn = ({user, roles}: Props) => {
     const [open, setOpen] = React.useState(false);
@@ -42,11 +45,25 @@ const UserTableEditBtn = ({user, roles}: Props) => {
             id="combo-box-demo"
             options={roles.map(role => role.name)}
             onChange={(event, value) => setValue(value)}
-            sx={{ width: 300 }}
+            sx={{ width: 300, marginTop: 2, marginBottom: 1}}
             defaultValue={user.role}
             renderInput={(params) => <TextField {...params} label="Role" />}
             />
-            <Button >Update</Button>
+            <Button onClick={(_) => setOpen(false)}>Cancel</Button>
+            <Button
+            disabled={value === null || value === user.role}
+             onClick={
+                (_) => {
+                    if (value !== null) { 
+                        updateAppUser({...user, roleId: getIdFromRole(roles, value)?.id || "error"});
+                    }
+                    if (value === null) {
+                        console.log()
+                    }
+                    setOpen(false);
+            }
+            }
+            >Update</Button>
         </Box>
       </Modal>
       </>
