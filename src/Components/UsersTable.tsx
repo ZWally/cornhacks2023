@@ -139,7 +139,7 @@ export default function UsersTable({users, roles, setUsers}: UsersTableProps) {
                 {user.role}
               </TableCell>
               <TableCell>
-                <UserTableEditBtn user={user} roles={roles} setUsers={setUsers}/>
+                <UserTableEditBtn oldUsers={users} user={user} roles={roles} setUsers={setUsers}/>
               </TableCell>
             </TableRow>
           ))}
