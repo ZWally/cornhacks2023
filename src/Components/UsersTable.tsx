@@ -86,13 +86,22 @@ type UsersTableProps = {
   app: App
 }
 
-export const roleFromId = (roles: Role[], roleId: string) => roles.find(role => role.id === roleId);
+export const roleFromId = (roles: Role[], roleId: string) => 
+  {
+    const roleName = roles.find(role => role.id === roleId);
+    // console.log("ROLE NAME level 1", roleName)
+    return roleName
+  }
 
 const userToRow = (roles: Role[], user: AppUser) => {
-  return ({
+  const row = {
     role: roleFromId(roles, user.roleId)?.name || "None",
-    ...user
-  });
+    id: user.id,
+    authId: user.authId,
+    roleId: user.roleId
+  }
+  // console.log("ROLE NAME", row.role)
+  return (row);
 }
 
 export default function UsersTable({users, roles, setUsers, app}: UsersTableProps) {
