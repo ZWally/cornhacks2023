@@ -96,8 +96,8 @@ export async function getAppsById(appIds: string []): Promise<App []> {
   return getObjectsById(appIds, getAppById);
 }
 
-export async function createApp(userIds: string [], roleIds: string [], permissionIds: string []): Promise<App> {
-  return createObjectInDatabase('apps', { userIds, roleIds, permissionIds }) as Promise<App>;
+export async function createApp(name: string, description: string, userIds: string [], roleIds: string [], permissionIds: string []): Promise<App> {
+  return createObjectInDatabase('apps', { name, description, userIds, roleIds, permissionIds }) as Promise<App>;
 }
 
 export async function updateApp(app: App) {

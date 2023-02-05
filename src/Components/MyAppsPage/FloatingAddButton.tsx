@@ -4,14 +4,10 @@ import AddIcon from '@mui/icons-material/Add'
 
 export default function FloatingAddButton() {
     return (
-        <Stack 
-            justifyContent="flex-end"
-            alignItems="flex-end"
-            mt={4}
-            mr={4}>
+        <div>
             <Fab color="primary" aria-label="add">
                 <AddIcon />
             </Fab>
-        </Stack>
+        </div>
     );
 };

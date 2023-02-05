@@ -1,25 +1,30 @@
-import React from 'react';
-import logo from './logo.svg';
 import Banner from './Components/Banner';
 import './App.css';
 import { BrowserRouter } from 'react-router-dom';
 import { Route, Routes } from 'react-router';
 import AppUser from './Types/AppUser';
-import Role from './Types/Role';
+import Role from './Types/Role';import NewApplicationModal from './Components/NewAppModal';
+import { Console } from 'console';
 import UsersTable from './Components/UsersTable';
-import Playground from './Playground/Playground';
+import MyAppPage from './Components/MyAppsPage/MyAppsPage';
+import AppPage from './Components/AppPage';
+import { AuthProvider } from './Contexts/Authorization';
 
 function App() {
   return (
-
-    <BrowserRouter>
+    <AuthProvider>
+      <BrowserRouter>
+      <Banner/>
+      <div style={{display: 'flex', justifyContent: 'center', width: '100vw'}}>
+        <div style={{maxWidth: 1200, width: "100%"}}>
       <Routes>
-        <Route path="/" element={<div>homepage - myapps</div>} />
-        <Route path="/app/:appId" element={<div>app page</div>} />
-        <Route path="/app/:appId/permissions" element={<div>app page - permissions tab</div>} />
-        <Route path="/app/:appId/users" element={<div>app page - users tab</div>} />
+        <Route path="/" element={<MyAppPage />}/>
+        <Route path="/app/:appId" element={<AppPage />}/>
       </Routes>
-    </BrowserRouter>
+        </div>
+      </div>
+      </BrowserRouter>
+    </AuthProvider>
   );
 }
 

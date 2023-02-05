@@ -1,10 +1,11 @@
-import { Grid, Card } from '@mui/material';
+import { Grid, Card, Divider } from '@mui/material';
 import CardContent from '@mui/material/CardContent';
 import App from "../../Types/App";
 import * as React from 'react';
 import Typography from '@mui/material/Typography';
 import Box from '@mui/material/Box';
 import { Button, CardActionArea, CardActions, } from '@mui/material';
+import { Link } from 'react-router-dom';
 
 type Props = {
   appList: App [];
@@ -13,16 +14,18 @@ type Props = {
 const appToCard = function (app: App) {
     return(
         <Grid item>
-            <Card sx={{ minWidth: 275 }}>
-                <CardContent>
-                    <Typography variant="h4" component="div" mb={5}>
+            <Link to={`/app/${app.id}`} style={{textDecoration: "none"}}>
+            <Card sx={{ width: 275, height: 250 }}>
+                <CardContent sx={{m: 2}}>
+                    <Typography variant="h5" component="div" mb={3}>
                     {app.name}
                     </Typography>
-                    <Typography sx={{ mb: 1.5 }} color="text.secondary">
+                    <Typography color="text.secondary">
                     {app.description}
                     </Typography>
                 </CardContent>
             </Card>
+            </Link>
         </Grid>
     );
 };

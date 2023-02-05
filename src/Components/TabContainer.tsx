@@ -6,8 +6,12 @@ enum TabOption {
   PERMISSIONS,
 }
 
+type Props = {
+  usersComponent: React.ReactNode
+  permissionsComponent: React.ReactNode
+}
 
-const TabsContainer: React.FC = () => {
+const TabsContainer = ({usersComponent, permissionsComponent}: Props) => {
   const [selectedTab, setSelectedTab] = React.useState(TabOption.USERS);
 
   const handleTabChange = (event: React.ChangeEvent<{}>, newValue: TabOption) => {
@@ -22,15 +26,15 @@ const TabsContainer: React.FC = () => {
       width: '95%',
       marginTop: '10px',
       }}>
-        <Tabs value={selectedTab} onChange={handleTabChange}>
+        <Tabs value={selectedTab} onChange={handleTabChange} style={{margin: '20px'}}>
           <Tab label="Users" value={TabOption.USERS} style={{fontSize: '20px'}} />
           <Tab label="Permissions" value={TabOption.PERMISSIONS} style={{fontSize: '20px'}} />
         </Tabs>
         <CardContent>
           {selectedTab === TabOption.USERS ? (
-            <div>{/* Render the Users component here */}</div>
+            <div>{usersComponent}</div>
           ) : (
-            <div>{/* Render the Permissions component here */}</div>
+            <div>{permissionsComponent}</div>
           )}
         </CardContent>
       </Card>
