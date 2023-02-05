@@ -2,9 +2,6 @@ import Banner from './Components/Banner';
 import './App.css';
 import { BrowserRouter } from 'react-router-dom';
 import { Route, Routes } from 'react-router';
-import AppUser from './Types/AppUser';
-import Role from './Types/Role';
-import UsersTable from './Components/UsersTable';
 import { AuthProvider } from './Contexts/Authorization';
 
 function App() {
