@@ -41,16 +41,18 @@ const dummyApp4: App = {
     description: "They floop Guys"
 };
 
-const dummyAppsList: App [] = [dummyApp1, dummyApp2, dummyApp3, dummyApp4];
-const handleAdd = (apps:any) => {
+const dummyAppsList: App[] = [dummyApp1, dummyApp2, dummyApp3, dummyApp4];
+const handleAdd = (apps: any) => {
     //TODO: THE STUFF
-  };
+};
 function MyAppPage() {
     return (
         <div>
+
             <TitleHeader />
-            <CardLayout appList={dummyAppsList}/>
-            <footer style={{textAlign:"right", marginRight:'18px'}}>
+            <CardLayout appList={dummyAppsList} />
+
+            <footer style={{ textAlign: "right", marginRight: '18px', maxHeight: '18px' }}>
                 <NewApplicationModal setApps={handleAdd} />
             </footer>
         </div>

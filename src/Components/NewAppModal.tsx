@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Button, TextField, Dialog, DialogActions, DialogContent, DialogTitle, Modal, Icon, IconButton } from '@mui/material';
+import { Button, TextField, Dialog, DialogActions, DialogContent, DialogTitle, Modal, Icon, IconButton, Fab } from '@mui/material';
 import App from '../Types/App';
 import AddIcon from '@mui/icons-material/Add'
 
@@ -28,7 +28,9 @@ const NewApplicationModal: React.FC<Props> = ({ setApps }) => {
     return (
         <div>
             <IconButton color="secondary" onClick={handleOpen}>
-            <AddIcon color='primary' fontSize='large'/>
+            <Fab color="primary" aria-label="add">
+            <AddIcon htmlColor='white' fontSize='large'/>
+            </Fab>
             </IconButton>
             <Dialog open={open} onClose={handleClose}>
                 <DialogTitle>New Application</DialogTitle>
