@@ -7,11 +7,11 @@ import React from "react"
 type Props = {
     permissions: Permission[]
     roles: Role[]
-    setRoles: React.Dispatch<React.SetStateAction<Role[] | null>>
+    unsavedRoles: Role[]
+    setUnsavedRoles: React.Dispatch<React.SetStateAction<Role[]>>
 }
 
-const MatrixTable = ({permissions, roles, setRoles}: Props) => {
-    const [unsavedRoles, setUnsavedRoles] = React.useState([...roles]);
+const MatrixTable = ({permissions, roles, unsavedRoles, setUnsavedRoles}: Props) => {
     
     React.useEffect(() => {
         console.log("EFFECT IN PROGRESS");

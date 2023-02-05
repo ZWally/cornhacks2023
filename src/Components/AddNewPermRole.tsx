@@ -11,9 +11,11 @@ type Props = {
     setPermissions:React.Dispatch<React.SetStateAction<Permission[] | null>>
     setRoles: React.Dispatch<React.SetStateAction<Role[] | null>>
     app: App
+    handleSavePerms: () => void
+    handleRevertPerms: () => void
 }
 
-const AddNewPermRole = ({permissions, roles, setPermissions, setRoles, app}: Props) => {
+const AddNewPermRole = ({permissions, roles, setPermissions, setRoles, app, handleSavePerms, handleRevertPerms}: Props) => {
     const [permIsOpen, setPermIsOpen] = React.useState(false);
     const [roleIsOpen, setRoleIsOpen] = React.useState(false);
     const [permissionName, setPermissionName] = React.useState("");
@@ -55,9 +57,15 @@ const AddNewPermRole = ({permissions, roles, setPermissions, setRoles, app}: Pro
     
     return (
         <>
-            <Stack direction="row-reverse" spacing={2}>
-                <Button variant="contained" onClick={() => setPermIsOpen(true)}>New Permission</Button>
-                <Button variant="contained" onClick={() => setRoleIsOpen(true)}>New Role</Button>
+            <Stack direction="row" justifyContent="space-between">
+                <Stack direction="row" spacing={2}>
+                    <Button variant="contained" onClick={handleSavePerms}>Save</Button>
+                    <Button variant="contained" onClick={handleRevertPerms}>Revert</Button>
+                </Stack>
+                <Stack direction="row-reverse" spacing={2}>
+                    <Button variant="contained" onClick={() => setPermIsOpen(true)}>New Permission</Button>
+                    <Button variant="contained" onClick={() => setRoleIsOpen(true)}>New Role</Button>
+                </Stack>
             </Stack>
             <Dialog open={permIsOpen} onClose={handlePermissionClose}>
                 <DialogTitle>New Permission</DialogTitle>
