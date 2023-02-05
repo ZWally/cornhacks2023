@@ -2,26 +2,57 @@ import React from "react";
 import corn from "./cornhacks.png";
 import { Button, TextField, Checkbox, Select, FormControl, MenuItem, SelectChangeEvent, AppBar, Fab } from "@mui/material";
 import AddIcon from "@mui/icons-material/Add";
+import { getAppById, getAppUsersById } from "../utils/database";
+import AppUser from "../Types/AppUser";
 
+const PERMISSIONS: string[] = [
+  "canSeeCorn",
+  "canViewForm",
+  "canViewPlusButton",
+  "canClickPlusButton",
+  "canEditDropDown",
+  "canViewTextEntry",
+  "canEditTextEntry",
+  "canViewCheckBox",
+  "canEditCheckBox",
+  'canViewSubmitButton',
+  'canClickSubmit',
+]
 
-interface Props {
-    permissions: string[]
-}
+const APP_ID = 'oijwf092309j203f';
 
+const Playground: React.FC = () => {
+    const [userPermissions, setUserPermissions] = React.useState<string []>([])
+    const [currentUser, setCurrentUser] = React.useState<AppUser | undefined>(undefined);
+    const [loaded, setLoaded] = React.useState(false);
+    const [userList, setUserList] = React.useState<AppUser []>([]);
 
-const Playground: React.FC<Props> = ({ permissions }) => {
-    const [state, setState] = React.useState({
-        checked: false,
-        selectedUser: "john"
-    });
+    React.useEffect(() => {
+      getAppById(APP_ID).then(app => {
+        getAppUsersById(app.userIds).then(appUsers => {
+          setUserList(appUsers)
+          setCurrentUser(appUsers[0])  
+        })
+      })
+    }, [])
 
-    const handleCheckboxChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-        setState({ ...state, checked: event.target.checked });
-    };
+    React.useEffect(() => {
+      if (currentUser) {
+        setLoaded(false);
+        fetch('https://us-central1-cornhax2023.cloudfunctions.net/getUserPermissions?userId=' + currentUser.id).then(data => data.json()).then(res => {
+          setUserPermissions(res);
+          setLoaded(true)
+        })
+      }
+    }, [currentUser])
 
-    const handleSelectChange = (event: SelectChangeEvent<string>) => {
-        setState({ ...state, selectedUser: event.target.value });
-    };
+    function getAppUserFromName(name: string) {
+      for (let i = 0; i < userList.length; i++) {
+        if (name == userList[i].authId) {
+          return userList[i];
+        }
+      }
+    }
 
     return (
         <div
@@ -37,14 +68,11 @@ const Playground: React.FC<Props> = ({ permissions }) => {
                 <Select
                     labelId="select-label"
                     id="select"
-                    value={state.selectedUser}
-                    onChange={handleSelectChange}
+                    value={currentUser?.authId}
+                    onChange={e => setCurrentUser(getAppUserFromName(e.target.value))}
                     style={{height:"40px",marginTop:'3px'}}
                 >
-                    <MenuItem value="john" color='primary'>John</MenuItem>
-                    <MenuItem value="zach">Zach</MenuItem>
-                    <MenuItem value="landry">Landry</MenuItem>
-                    <MenuItem value="roy">Roy</MenuItem>
+                  { userList.map(appUser => <MenuItem value={appUser.authId}>{appUser.authId}</MenuItem>)}
                 </Select>
                 <Button
                     variant="contained"
@@ -54,36 +82,34 @@ const Playground: React.FC<Props> = ({ permissions }) => {
                     Update
                 </Button>
             </AppBar>
-            <img src={corn} height='120px' hidden={!permissions.includes("canSeeCorn")} style={{margin: "1rem"}}></img>
-            {permissions.includes("canViewPlusButton") && (
+            <img src={corn} height='120px' hidden={!userPermissions.includes("canSeeCorn")} style={{margin: "1rem"}}></img>
+            {userPermissions.includes("canViewPlusButton") && (
                 <FormControl>
-                    <Fab color="primary" aria-label="add" disabled={!permissions.includes("canClickPlusButton")}>
+                    <Fab color="primary" aria-label="add" disabled={!userPermissions.includes("canClickPlusButton")}>
                         <AddIcon />
                     </Fab>
 
                 </FormControl>
             )}
-            {permissions.includes("canViewTextEntry") && (
+            {userPermissions.includes("canViewTextEntry") && (
                 <TextField
                     id="standard-basic"
                     label="Text Field"
-                    disabled={!permissions.includes("canEditTextEntry")}
+                    disabled={!userPermissions.includes("canEditTextEntry")}
                     style={{ margin: "1rem" }}
                 />
             )}
-            {permissions.includes("canViewCheckBox") && (
+            {userPermissions.includes("canViewCheckBox") && (
                 <Checkbox
-                    checked={state.checked}
-                    onChange={handleCheckboxChange}
-                    disabled={!permissions.includes("canEditCheckBox")}
+                    disabled={!userPermissions.includes("canEditCheckBox")}
                     style={{ margin: "1rem" }}
                 />
             )}
-            {permissions.includes('canViewSubmitButton') && (
+            {userPermissions.includes('canViewSubmitButton') && (
                 <Button
                     variant="contained"
                     color="primary"
-                    disabled={!permissions.includes('canClickSubmit')}
+                    disabled={!userPermissions.includes('canClickSubmit')}
                     onClick={() => console.log("Button clicked")}
                     style={{ margin: "1rem" }}
                 >

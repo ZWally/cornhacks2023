@@ -9,25 +9,10 @@ import Role from './Types/Role';
 import UsersTable from './Components/UsersTable';
 import Playground from './Playground/Playground';
 
-const PERMISSIONS: string[] = [
-  "canSeeCorn",
-  "canViewForm",
-  "canViewPlusButton",
-  "canClickPlusButton",
-  "canEditDropDown",
-  "canViewTextEntry",
-  "canEditTextEntry",
-  "canViewCheckBox",
-  "canEditCheckBox",
-  'canViewSubmitButton',
-  'canClickSubmit',
-]
-
 function App() {
   return (
 
     <BrowserRouter>
-      <Playground permissions={PERMISSIONS}></Playground>
       <Routes>
         <Route path="/" element={<div>homepage - myapps</div>} />
         <Route path="/app/:appId" element={<div>app page</div>} />
