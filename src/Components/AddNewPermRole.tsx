@@ -13,9 +13,10 @@ type Props = {
     app: App
     handleSavePerms: () => void
     handleRevertPerms: () => void
+    setApp: React.Dispatch<React.SetStateAction<App | null>>
 }
 
-const AddNewPermRole = ({permissions, roles, setPermissions, setRoles, app, handleSavePerms, handleRevertPerms}: Props) => {
+const AddNewPermRole = ({permissions, roles, setPermissions, setRoles, app, setApp, handleSavePerms, handleRevertPerms}: Props) => {
     const [permIsOpen, setPermIsOpen] = React.useState(false);
     const [roleIsOpen, setRoleIsOpen] = React.useState(false);
     const [permissionName, setPermissionName] = React.useState("");
@@ -37,7 +38,10 @@ const AddNewPermRole = ({permissions, roles, setPermissions, setRoles, app, hand
             setPermissions([...permissions, newPermission]);
             
             console.log("WARNING API CALL");
-            updateApp({...app, permissionIds: [...app.permissionIds, newPermission.id]})
+            const newApp = {...app, roleIds: [...app.roleIds], permissionIds: [...app.permissionIds, newPermission.id]};
+            updateApp(newApp).then(
+                () => setApp(newApp)
+            )
         })
 
         handlePermissionClose();
@@ -47,9 +51,11 @@ const AddNewPermRole = ({permissions, roles, setPermissions, setRoles, app, hand
         console.log("WARNING API CALL");
         createRole(roleName, []).then(newRole => {
             setRoles([...roles, newRole]);
+
             
             console.log("WARNING API CALL");
-            updateApp({...app, roleIds: [...app.roleIds, newRole.id]})
+            const newApp = {...app, permissionIds: [...app.permissionIds], roleIds: [...app.roleIds, newRole.id]}
+            updateApp(newApp).then(() => setApp(newApp))
         })
 
         handleRoleClose();

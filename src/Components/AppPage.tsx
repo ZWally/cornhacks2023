@@ -44,7 +44,7 @@ const AppPage = () => {
             <Typography variant='h2' ml={2} mb={1}>{app?.name}</Typography>
             <TabsContainer
                 usersComponent={app && <UsersTable app={app} setUsers={setUsers} users={users || []} roles={roles || []} />}
-                permissionsComponent={roles && permissions && app && <PermissionMatrix app={app} roles={roles} setRoles={setRoles} permissions={permissions} setPermissions={setPermissions}/>}
+                permissionsComponent={roles && permissions && app && <PermissionMatrix setApp={setApp} app={app} roles={roles} setRoles={setRoles} permissions={permissions} setPermissions={setPermissions}/>}
             />
         </div>
     )
