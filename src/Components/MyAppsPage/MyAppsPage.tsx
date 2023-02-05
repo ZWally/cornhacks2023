@@ -25,8 +25,6 @@ function MyAppPage() {
 
     })
 
-
-
     return (
         <div>
             <TitleHeader />
