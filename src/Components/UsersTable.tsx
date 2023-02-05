@@ -1,9 +1,11 @@
-import { Box, IconButton, Paper, Table, TableBody, TableCell, TableContainer, TableFooter, TableHead, TablePagination, TableRow } from "@mui/material";
+import { Button, Box, IconButton, Paper, Table, TableBody, TableCell, TableContainer, TableFooter, TableHead, TablePagination, TableRow } from "@mui/material";
 import { FirstPage, LastPage, KeyboardArrowRight, KeyboardArrowLeft } from "@mui/icons-material"
 import AppUser from "../Types/AppUser";
 import React from "react";
 import UserTableEditBtn from "./UserTableEditBtn";
 import Role from "../Types/Role";
+import AddUserModal from "./AddUserModal";
+import App from "../Types/App";
 
 type TablePaginationActionsProps = {
   count: number;
@@ -80,6 +82,8 @@ export type AppUserRow = {
 type UsersTableProps = {
   users: AppUser []
   roles: Role []
+  setUsers: React.Dispatch<React.SetStateAction<AppUser[] | null>>
+  app: App
 }
 
 export const roleFromId = (roles: Role[], roleId: string) => roles.find(role => role.id === roleId);
@@ -91,9 +95,10 @@ const userToRow = (roles: Role[], user: AppUser) => {
   });
 }
 
-export default function UsersTable({users, roles}: UsersTableProps) {
+export default function UsersTable({users, roles, setUsers, app}: UsersTableProps) {
   const [page, setPage] = React.useState(0);
   const [rowsPerPage, setRowsPerPage] = React.useState(5);
+  const [addUserOpen, setAddUserOpen] = React.useState(false);
   
   const userRows: AppUserRow [] = users.map((user) => userToRow(roles, user));
   // Avoid a layout jump when reaching the last page with empty rows.
@@ -116,6 +121,7 @@ export default function UsersTable({users, roles}: UsersTableProps) {
 
 
   return (
+    <>
     <TableContainer component={Paper}>
       <Table >
         <TableHead>
@@ -138,7 +144,7 @@ export default function UsersTable({users, roles}: UsersTableProps) {
                 {user.role}
               </TableCell>
               <TableCell>
-                <UserTableEditBtn user={user} roles={roles}/>
+                <UserTableEditBtn oldUsers={users} user={user} roles={roles} setUsers={setUsers}/>
               </TableCell>
             </TableRow>
           ))}
@@ -150,6 +156,13 @@ export default function UsersTable({users, roles}: UsersTableProps) {
         </TableBody>
         <TableFooter>
           <TableRow>
+            <Button variant="contained" style={{marginLeft: 20}}
+              onClick={
+                (_) => {
+                  setAddUserOpen(true);
+                }
+              }
+            >Add User</Button>
             <TablePagination
               rowsPerPageOptions={[5, 10, 25, { label: 'All', value: -1 }]}
               colSpan={3}
@@ -170,5 +183,7 @@ export default function UsersTable({users, roles}: UsersTableProps) {
         </TableFooter>
       </Table>
     </TableContainer>
+    <AddUserModal isOpen={addUserOpen} setIsOpen={setAddUserOpen} roles={roles} users={users} setUsers={setUsers} app={app}/>
+    </>
   );
 }
