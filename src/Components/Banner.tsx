@@ -1,6 +1,6 @@
 import React from 'react';
-import { AppBar, Toolbar, Typography, IconButton } from '@material-ui/core';
-import { AccountCircle, Home } from '@material-ui/icons';
+import { AppBar, Toolbar, Typography, IconButton } from '@mui/material';
+import { AccountCircle, Home } from '@mui/icons-material';
 
 interface BannerProps {
   username: string;
