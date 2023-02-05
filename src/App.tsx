@@ -5,13 +5,21 @@ import './App.css';
 import { BrowserRouter } from 'react-router-dom';
 import { Route, Routes } from 'react-router';
 import AppUser from './Types/AppUser';
-import MyAppPage from './Components/MyAppsPage/MyAppsPage';
-
-
+import Role from './Types/Role';
+import UsersTable from './Components/UsersTable';
 
 function App() {
   return (
-    <MyAppPage/>
+    <BrowserRouter>
+      <Routes>
+        <Route path="/" element={<div>homepage - myapps</div>}/>
+        <Route path="/app/:appId" element={<div>app page</div>}/>
+        <Route path="/app/:appId/permissions" element={<div>app page - permissions tab</div>}/>
+        <Route path="/app/:appId/users" element={<div>app page - users tab</div>}/>
+      </Routes>
+    </BrowserRouter>
+    </>
+>>>>>>> c7362408ceea0b1e3724bb749790b5c77df0d470
   );
 }
 
