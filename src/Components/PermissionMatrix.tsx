@@ -1,3 +1,4 @@
+import App from "../Types/App";
 import Permission from "../Types/Permission";
 import Role from "../Types/Role";
 import {updateApp, createPermission, createRole} from "../utils/database"
@@ -8,11 +9,12 @@ type Props = {
     roles: Role[]
     setPermissions:React.Dispatch<React.SetStateAction<Permission[] | null>>
     setRoles: React.Dispatch<React.SetStateAction<Role[] | null>>
+    app: App
 }
 
-const PermissionMatrix = ({permissions, roles, setPermissions, setRoles}: Props) => {
+const PermissionMatrix = ({permissions, roles, setPermissions, setRoles, app}: Props) => {
     return (
-        <AddNewPermRole permissions={permissions} roles={roles} setPermissions={setPermissions} setRoles={setRoles}/>
+        <AddNewPermRole app={app} permissions={permissions} roles={roles} setPermissions={setPermissions} setRoles={setRoles}/>
     )
 }
 
