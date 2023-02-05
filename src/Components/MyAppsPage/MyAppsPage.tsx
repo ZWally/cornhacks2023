@@ -11,8 +11,9 @@ import { useAuthContext } from "../../Contexts/Authorization";
 
 function MyAppPage() {
     const [appList, setAppList] = React.useState<App [] | null>(null);
-    const [loaded, setLoaded] = React.useState(false);
     const {siteUser} = useAuthContext();
+
+    console.log(appList);
 
     useEffect(() => {
         if (!siteUser) {
@@ -26,7 +27,7 @@ function MyAppPage() {
     return (
         <div>
             <TitleHeader />
-            {loaded && appList ? <CardLayout appList={appList} /> : <></>}
+            {appList ? <CardLayout appList={appList} /> : <></>}
             <footer style={{ textAlign: "right", marginRight: '18px', maxHeight: '18px' }}>
                 {siteUser && appList && <NewApplicationModal appList={appList} setAppList={setAppList} fetchedSiteUser={siteUser}/>}
             </footer>
