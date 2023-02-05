@@ -7,10 +7,19 @@ import { Route, Routes } from 'react-router';
 import AppUser from './Types/AppUser';
 import Role from './Types/Role';
 import UsersTable from './Components/UsersTable';
+import Playground from './Playground/Playground';
+
+const PERMISSIONS: {[id:string]:boolean} = {
+  "canView":true,
+  "canEdit":false,
+  'canClick':false
+}
 
 function App() {
   return (
+    
     <BrowserRouter>
+    <Playground permissions={PERMISSIONS}></Playground>
       <Routes>
         <Route path="/" element={<div>homepage - myapps</div>}/>
         <Route path="/app/:appId" element={<div>app page</div>}/>
