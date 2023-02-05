@@ -1,9 +1,9 @@
-import { Grid, Card } from '@material-ui/core'
-import CardContent from '@material-ui/core/CardContent';
+import { Grid, Card } from '@mui/material';
+import CardContent from '@mui/material/CardContent';
 import App from "../../Types/App";
 import * as React from 'react';
-import Typography from '@material-ui/core';
-import { Button, CardActionArea, CardActions, } from '@material-ui/core';
+import Typography from '@mui/material/Typography';
+import { Button, CardActionArea, CardActions, } from '@mui/material';
 
 type Props = {
   appList: App [];
