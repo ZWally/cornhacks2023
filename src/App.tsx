@@ -9,22 +9,30 @@ import Role from './Types/Role';
 import UsersTable from './Components/UsersTable';
 import Playground from './Playground/Playground';
 
-const PERMISSIONS: {[id:string]:boolean} = {
-  "canView":true,
-  "canEdit":false,
-  'canClick':false
+const PERMISSIONS: { [id: string]: boolean } = {
+  "canSeeCorn": true,
+  "canViewForm": true,
+  "canViewPlusButton":true,
+  "canClickPlusButton":true,
+  "canEditDropDown": true,
+  "canViewTextEntry": true,
+  "canEditTextEntry": true,
+  "canViewCheckBox": true,
+  "canEditCheckBox": true,
+  'canViewSubmitButton': true,
+  'canClickSubmit': true,
 }
 
 function App() {
   return (
-    
+
     <BrowserRouter>
-    <Playground permissions={PERMISSIONS}></Playground>
+      <Playground permissions={PERMISSIONS}></Playground>
       <Routes>
-        <Route path="/" element={<div>homepage - myapps</div>}/>
-        <Route path="/app/:appId" element={<div>app page</div>}/>
-        <Route path="/app/:appId/permissions" element={<div>app page - permissions tab</div>}/>
-        <Route path="/app/:appId/users" element={<div>app page - users tab</div>}/>
+        <Route path="/" element={<div>homepage - myapps</div>} />
+        <Route path="/app/:appId" element={<div>app page</div>} />
+        <Route path="/app/:appId/permissions" element={<div>app page - permissions tab</div>} />
+        <Route path="/app/:appId/users" element={<div>app page - users tab</div>} />
       </Routes>
     </BrowserRouter>
   );
