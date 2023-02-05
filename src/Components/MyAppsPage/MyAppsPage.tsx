@@ -23,7 +23,7 @@ function MyAppPage() {
             setLoaded(true);
         });
 
-    })
+    }, [])
 
     return (
         <div>

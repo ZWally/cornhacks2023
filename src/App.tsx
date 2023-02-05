@@ -5,12 +5,12 @@ import './App.css';
 import { BrowserRouter } from 'react-router-dom';
 import { Route, Routes } from 'react-router';
 import AppUser from './Types/AppUser';
-import NewApplicationModal from './Components/NewAppModal';
+import Role from './Types/Role';import NewApplicationModal from './Components/NewAppModal';
 import { Console } from 'console';
 import MyAppPage from './Components/MyAppsPage/MyAppsPage';
 
 
-
+import UsersTable from './Components/UsersTable';
 
 function App() {
   return (
