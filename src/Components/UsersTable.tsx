@@ -80,6 +80,7 @@ export type AppUserRow = {
 type UsersTableProps = {
   users: AppUser []
   roles: Role []
+  setUsers: React.Dispatch<React.SetStateAction<AppUser[] | null>>
 }
 
 export const roleFromId = (roles: Role[], roleId: string) => roles.find(role => role.id === roleId);
@@ -91,7 +92,7 @@ const userToRow = (roles: Role[], user: AppUser) => {
   });
 }
 
-export default function UsersTable({users, roles}: UsersTableProps) {
+export default function UsersTable({users, roles, setUsers}: UsersTableProps) {
   const [page, setPage] = React.useState(0);
   const [rowsPerPage, setRowsPerPage] = React.useState(5);
   
@@ -138,7 +139,7 @@ export default function UsersTable({users, roles}: UsersTableProps) {
                 {user.role}
               </TableCell>
               <TableCell>
-                <UserTableEditBtn user={user} roles={roles}/>
+                <UserTableEditBtn user={user} roles={roles} setUsers={setUsers}/>
               </TableCell>
             </TableRow>
           ))}

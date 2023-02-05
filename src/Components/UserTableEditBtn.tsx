@@ -8,6 +8,7 @@ import AppUser from "../Types/AppUser"
 type Props = {
     user: AppUserRow
     roles: Role []
+    setUsers: React.Dispatch<React.SetStateAction<AppUser[] | null>>
 }
 
 const style = {
@@ -24,7 +25,7 @@ const style = {
 
 const getIdFromRole = (roles: Role [], roleName: string) => roles.find(role => role.name === roleName);
 
-const UserTableEditBtn = ({user, roles}: Props) => {
+const UserTableEditBtn = ({user, roles, setUsers}: Props) => {
     const [open, setOpen] = React.useState(false);
   const handleOpen = () => setOpen(true);
   const handleClose = () => setOpen(false);

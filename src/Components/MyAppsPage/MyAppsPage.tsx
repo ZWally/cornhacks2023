@@ -12,6 +12,7 @@ function MyAppPage() {
     const [loaded, setLoaded] = React.useState(false);
 
     useEffect(() => {
+        console.log("WARNING API CALL")
         getSiteUserById('testUser').then(async fetchedSiteUser => {
             setSiteUser(fetchedSiteUser);
             setAppList(await getAppsById(fetchedSiteUser.appIds));
