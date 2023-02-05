@@ -18,8 +18,6 @@ function App() {
         <Route path="/app/:appId/users" element={<div>app page - users tab</div>}/>
       </Routes>
     </BrowserRouter>
-    </>
->>>>>>> c7362408ceea0b1e3724bb749790b5c77df0d470
   );
 }
 
