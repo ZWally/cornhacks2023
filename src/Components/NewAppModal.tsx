@@ -2,18 +2,28 @@ import React, { useState } from 'react';
 import { Button, TextField, Dialog, DialogActions, DialogContent, DialogTitle, Modal, Icon, IconButton, Fab } from '@mui/material';
 import App from '../Types/App';
 import AddIcon from '@mui/icons-material/Add'
+import { createApp, updateSiteUser } from '../utils/database';
+import SiteUser from '../Types/SiteUser';
 
 interface Props {
-    setApps: (apps: App[]) => void;
+    fetchedSiteUser: SiteUser,
+    
 }
 
-const NewApplicationModal: React.FC<Props> = ({ setApps }) => {
+const NewApplicationModal: React.FC<Props> = ({ fetchedSiteUser }) => {
     const [open, setOpen] = useState(false);
     const [name, setName] = useState('');
     const [description, setDescription] = useState('');
-    const onAdd = (name: string, description: string) => {
-        //TODO: add the app to the database
+    const onAdd = async (name: string, description: string) => {
+        const newApp: Promise<App> = createApp(name, description, [], [], []);
+        console.log("hit");
+        newApp.then(app => {
+            fetchedSiteUser.appIds.push(app.id);
+            updateSiteUser(fetchedSiteUser);
+            console.log("hit");
+        })
         handleClose();
+
     };
     const handleOpen = () => {
         setOpen(true);
@@ -28,9 +38,9 @@ const NewApplicationModal: React.FC<Props> = ({ setApps }) => {
     return (
         <div>
             <IconButton color="secondary" onClick={handleOpen}>
-            <Fab color="primary" aria-label="add">
-            <AddIcon htmlColor='white' fontSize='large'/>
-            </Fab>
+                <Fab color="primary" aria-label="add">
+                    <AddIcon htmlColor='white' fontSize='large' />
+                </Fab>
             </IconButton>
             <Dialog open={open} onClose={handleClose}>
                 <DialogTitle>New Application</DialogTitle>
@@ -39,20 +49,20 @@ const NewApplicationModal: React.FC<Props> = ({ setApps }) => {
                         label="Application Name"
                         value={name}
                         onChange={(e: any) => setName(e.target.value)}
-                        style={{marginTop:"4px",margin:"6px",width:"92%"}}
+                        style={{ marginTop: "4px", margin: "6px", width: "92%" }}
                         required
                         size="small"
-                
-                        
+
+
                     />
                     <TextField
                         label="Application Description"
                         value={description}
                         onChange={(e: any) => setDescription(e.target.value)}
                         multiline
-                        style={{margin:"6px",width:"92%",}}
+                        style={{ margin: "6px", width: "92%", }}
                         size="small"
-                        
+
                     />
                 </DialogContent>
                 <DialogActions>
