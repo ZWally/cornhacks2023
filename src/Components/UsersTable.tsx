@@ -73,6 +73,7 @@ type AppUserRow = {
   id: string
   role: string
   authId: string
+  roleId: string
 }
 
 type UsersTableProps = {
@@ -81,9 +82,8 @@ type UsersTableProps = {
 
 const userToRow = (user: AppUser) => {
   return ({
-    id: user.id,
-    authId: user.authId,
-    role: "Placeholder Role"
+    role: "Placeholder Role",
+    ...user
   });
 }
 
@@ -134,7 +134,7 @@ export default function UsersTable({users}: UsersTableProps) {
                 {user.role}
               </TableCell>
               <TableCell>
-                <UserTableEditBtn user={}/>
+                <UserTableEditBtn user={{...user}}/>
               </TableCell>
             </TableRow>
           ))}

@@ -6,7 +6,9 @@ type Props = {
 }
 
 const UserTableEditBtn = ({user}: Props) => {
-    <Button></Button>
+    return (
+        <Button>Edit</Button>
+    )
 }
 
 export default UserTableEditBtn;
