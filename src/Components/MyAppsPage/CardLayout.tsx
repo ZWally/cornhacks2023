@@ -3,6 +3,7 @@ import CardContent from '@mui/material/CardContent';
 import App from "../../Types/App";
 import * as React from 'react';
 import Typography from '@mui/material/Typography';
+import Box from '@mui/material/Box';
 import { Button, CardActionArea, CardActions, } from '@mui/material';
 
 type Props = {
@@ -12,10 +13,14 @@ type Props = {
 const appToCard = function (app: App) {
     return(
         <Grid item>
-            <Card>
+            <Card sx={{ minWidth: 275 }}>
                 <CardContent>
+                    <Typography variant="h4" component="div" mb={5}>
                     {app.name}
+                    </Typography>
+                    <Typography sx={{ mb: 1.5 }} color="text.secondary">
                     {app.description}
+                    </Typography>
                 </CardContent>
             </Card>
         </Grid>
@@ -26,16 +31,16 @@ const appToCard = function (app: App) {
 const CardLayout: React.FC<Props> = ({ appList }) => {
 
   return (
-    <body>
+    <Box ml={4} mr={4}>
         <Grid
-        spacing={3}
+        spacing={2}
         container={true}
         direction="row"
-        justifyContent="flex-start"
+        justifyContent="space-between"
         alignItems="flex-start">
             {appList.map(appToCard)}
         </Grid>
-    </body>
+    </Box>
   );
 };
 
