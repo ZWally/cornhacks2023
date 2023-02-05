@@ -1,11 +1,11 @@
 import React from "react";
 import corn from "./cornhacks.png";
-import { Button, TextField, Checkbox, Select, FormControl, InputLabel, MenuItem, SelectChangeEvent, AppBar, Tab, Fab } from "@mui/material";
+import { Button, TextField, Checkbox, Select, FormControl, MenuItem, SelectChangeEvent, AppBar, Fab } from "@mui/material";
 import AddIcon from "@mui/icons-material/Add";
 
 
 interface Props {
-    permissions: { [id: string]: boolean }
+    permissions: string[]
 }
 
 
@@ -33,12 +33,13 @@ const Playground: React.FC<Props> = ({ permissions }) => {
                 backgroundColor: "aquamarine"
             }}
         >
-            <AppBar style={{ flexDirection: 'row', backgroundColor: "orange"}}>
+            <AppBar style={{ flexDirection: 'row', backgroundColor: "orange",height:'56px', padding: '5px'}}>
                 <Select
                     labelId="select-label"
                     id="select"
                     value={state.selectedUser}
                     onChange={handleSelectChange}
+                    style={{height:"40px",marginTop:'3px'}}
                 >
                     <MenuItem value="john" color='primary'>John</MenuItem>
                     <MenuItem value="zach">Zach</MenuItem>
@@ -47,42 +48,42 @@ const Playground: React.FC<Props> = ({ permissions }) => {
                 </Select>
                 <Button
                     variant="contained"
-                    color="secondary"
-                    style={{ margin: "1rem" }}
+                    color="primary"
+                    style={{height:"40px",marginTop:'3px'}}
                 >
                     Update
                 </Button>
             </AppBar>
-            <img src={corn} height='120px' hidden={!permissions["canSeeCorn"]} style={{margin: "1rem"}}></img>
-            {permissions["canViewPlusButton"] && (
+            <img src={corn} height='120px' hidden={!permissions.includes("canSeeCorn")} style={{margin: "1rem"}}></img>
+            {permissions.includes("canViewPlusButton") && (
                 <FormControl>
-                    <Fab color="secondary" aria-label="add" disabled={!permissions["canClickPlusButton"]}>
+                    <Fab color="primary" aria-label="add" disabled={!permissions.includes("canClickPlusButton")}>
                         <AddIcon />
                     </Fab>
 
                 </FormControl>
             )}
-            {permissions["canViewTextEntry"] && (
+            {permissions.includes("canViewTextEntry") && (
                 <TextField
                     id="standard-basic"
                     label="Text Field"
-                    disabled={!permissions["canEditTextEntry"]}
+                    disabled={!permissions.includes("canEditTextEntry")}
                     style={{ margin: "1rem" }}
                 />
             )}
-            {permissions["canViewCheckBox"] && (
+            {permissions.includes("canViewCheckBox") && (
                 <Checkbox
                     checked={state.checked}
                     onChange={handleCheckboxChange}
-                    disabled={!permissions["canEditCheckBox"]}
+                    disabled={!permissions.includes("canEditCheckBox")}
                     style={{ margin: "1rem" }}
                 />
             )}
-            {permissions['canViewSubmitButton'] && (
+            {permissions.includes('canViewSubmitButton') && (
                 <Button
                     variant="contained"
                     color="primary"
-                    disabled={!permissions['canClickSubmit']}
+                    disabled={!permissions.includes('canClickSubmit')}
                     onClick={() => console.log("Button clicked")}
                     style={{ margin: "1rem" }}
                 >

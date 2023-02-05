@@ -9,19 +9,19 @@ import Role from './Types/Role';
 import UsersTable from './Components/UsersTable';
 import Playground from './Playground/Playground';
 
-const PERMISSIONS: { [id: string]: boolean } = {
-  "canSeeCorn": true,
-  "canViewForm": true,
-  "canViewPlusButton":true,
-  "canClickPlusButton":true,
-  "canEditDropDown": true,
-  "canViewTextEntry": true,
-  "canEditTextEntry": true,
-  "canViewCheckBox": true,
-  "canEditCheckBox": true,
-  'canViewSubmitButton': true,
-  'canClickSubmit': true,
-}
+const PERMISSIONS: string[] = [
+  "canSeeCorn",
+  "canViewForm",
+  "canViewPlusButton",
+  "canClickPlusButton",
+  "canEditDropDown",
+  "canViewTextEntry",
+  "canEditTextEntry",
+  "canViewCheckBox",
+  "canEditCheckBox",
+  'canViewSubmitButton',
+  'canClickSubmit',
+]
 
 function App() {
   return (
