@@ -3,6 +3,7 @@ import { FirstPage, LastPage, KeyboardArrowRight, KeyboardArrowLeft } from "@mui
 import AppUser from "../Types/AppUser";
 import React from "react";
 import UserTableEditBtn from "./UserTableEditBtn";
+import Role from "../Types/Role";
 
 type TablePaginationActionsProps = {
   count: number;
@@ -78,20 +79,23 @@ type AppUserRow = {
 
 type UsersTableProps = {
   users: AppUser []
+  roles: Role []
 }
 
-const userToRow = (user: AppUser) => {
+const roleFromId = (roles: Role[], roleId: string) => roles.find(role => role.id === roleId);
+
+const userToRow = (roles: Role[], user: AppUser) => {
   return ({
-    role: "Placeholder Role",
+    role: roleFromId(roles, user.roleId)?.name || "None",
     ...user
   });
 }
 
-export default function UsersTable({users}: UsersTableProps) {
+export default function UsersTable({users, roles}: UsersTableProps) {
   const [page, setPage] = React.useState(0);
   const [rowsPerPage, setRowsPerPage] = React.useState(5);
   
-  const userRows: AppUserRow [] = users.map(userToRow);
+  const userRows: AppUserRow [] = users.map((user) => userToRow(roles, user));
   // Avoid a layout jump when reaching the last page with empty rows.
   const emptyRows =
     page > 0 ? Math.max(0, (1 + page) * rowsPerPage - userRows.length) : 0;
