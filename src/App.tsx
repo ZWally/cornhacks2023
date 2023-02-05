@@ -7,17 +7,15 @@ import { Route, Routes } from 'react-router';
 import AppUser from './Types/AppUser';
 import NewApplicationModal from './Components/NewAppModal';
 import { Console } from 'console';
+import MyAppPage from './Components/MyAppsPage/MyAppsPage';
 
-const handleAdd = (apps:any) => {
-  //TODO: THE STUFF
-};
 
 
 
 function App() {
   return (
     <BrowserRouter>
-    <NewApplicationModal  setApps={handleAdd}/>
+    <MyAppPage></MyAppPage>
       <Routes>
         <Route path="/" element={<div>homepage - myapps</div>}/>
         <Route path="/app/:appId" element={<div>app page</div>}/>

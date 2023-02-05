@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
-import { Button, TextField, Dialog, DialogActions, DialogContent, DialogTitle, Modal } from '@mui/material';
+import { Button, TextField, Dialog, DialogActions, DialogContent, DialogTitle, Modal, Icon, IconButton } from '@mui/material';
 import App from '../Types/App';
+import AddIcon from '@mui/icons-material/Add'
 
 interface Props {
     setApps: (apps: App[]) => void;
@@ -26,9 +27,9 @@ const NewApplicationModal: React.FC<Props> = ({ setApps }) => {
 
     return (
         <div>
-            <Button variant="outlined" color="primary" onClick={handleOpen}>
-                Add New Application
-            </Button>
+            <IconButton color="secondary" onClick={handleOpen}>
+            <AddIcon color='primary' fontSize='large'/>
+            </IconButton>
             <Dialog open={open} onClose={handleClose}>
                 <DialogTitle>New Application</DialogTitle>
                 <DialogContent>

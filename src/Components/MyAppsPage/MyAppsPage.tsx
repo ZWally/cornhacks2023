@@ -1,4 +1,5 @@
 import App from "../../Types/App";
+import NewApplicationModal from "../NewAppModal";
 import CardLayout from "./CardLayout";
 import FloatingAddButton from "./FloatingAddButton";
 import TitleHeader from "./TitleHeader";
@@ -41,14 +42,16 @@ const dummyApp4: App = {
 };
 
 const dummyAppsList: App [] = [dummyApp1, dummyApp2, dummyApp3, dummyApp4];
-
+const handleAdd = (apps:any) => {
+    //TODO: THE STUFF
+  };
 function MyAppPage() {
     return (
         <div>
             <TitleHeader />
             <CardLayout appList={dummyAppsList}/>
-            <footer>
-                <FloatingAddButton />
+            <footer style={{textAlign:"right", marginRight:'18px'}}>
+                <NewApplicationModal setApps={handleAdd} />
             </footer>
         </div>
     );
