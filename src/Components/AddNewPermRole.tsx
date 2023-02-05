@@ -52,7 +52,7 @@ const AddNewPermRole = ({permissions, roles, setPermissions, setRoles, app}: Pro
     
     return (
         <>
-            <Stack direction="row">
+            <Stack direction="row-reverse" spacing={2}>
                 <Button variant="contained" onClick={() => setPermIsOpen(true)}>New Permission</Button>
                 <Button variant="contained" onClick={() => setRoleIsOpen(true)}>New Role</Button>
             </Stack>
