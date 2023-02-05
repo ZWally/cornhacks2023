@@ -12,7 +12,6 @@ import AppPage from './Components/AppPage';
 
 function App() {
   return (
-    <>
     <BrowserRouter>
       <Routes>
         <Route path="/" element={<MyAppPage />}/>
@@ -21,7 +20,6 @@ function App() {
         <Route path="/app/:appId/users" element={<div>app page - users tab</div>}/>
       </Routes>
     </BrowserRouter>
-    </>
   );
 }
 

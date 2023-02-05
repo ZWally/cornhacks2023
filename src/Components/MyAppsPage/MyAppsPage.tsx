@@ -18,7 +18,7 @@ function MyAppPage() {
             setLoaded(true);
         });
 
-    })
+    }, [])
 
     
 
