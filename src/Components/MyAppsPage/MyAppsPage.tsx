@@ -1,5 +1,6 @@
 import App from "../../Types/App";
 import CardLayout from "./CardLayout";
+import TitleHeader from "./TitleHeader";
 
 // DUMMY DATA, REPLACE WITH REAL
 const dummyApp1: App = {
@@ -42,9 +43,12 @@ const dummyAppsList: App [] = [dummyApp1, dummyApp2, dummyApp3, dummyApp4];
 
 function MyAppPage() {
     return (
-        <body>
-            <CardLayout appList={dummyAppsList}/>
-        </body>
+        <div>
+           <TitleHeader />
+            <body>
+                <CardLayout appList={dummyAppsList}/>
+            </body>
+        </div>
     );
 };
 
