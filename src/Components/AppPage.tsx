@@ -8,6 +8,7 @@ import UsersTable from './UsersTable';
 import AppUser from '../Types/AppUser';
 import Role from '../Types/Role';
 import Permission from '../Types/Permission';
+import PermissionMatrix from './PermissionMatrix';
 
 const AppPage = () => {
     const { appId } = useParams<{appId: string}>();
@@ -43,7 +44,7 @@ const AppPage = () => {
             <Typography variant='h2' ml={2} mb={1}>{app?.name}</Typography>
             <TabsContainer
                 usersComponent={app && <UsersTable app={app} setUsers={setUsers} users={users || []} roles={roles || []} />}
-                permissionsComponent={<></>}
+                permissionsComponent={roles && permissions && <PermissionMatrix roles={roles} setRoles={setRoles} permissions={permissions} setPermissions={setPermissions}/>}
             />
         </div>
     )
