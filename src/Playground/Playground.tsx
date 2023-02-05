@@ -30,10 +30,10 @@ const Playground: React.FC<Props> = ({ permissions }) => {
                 flexDirection: "column",
                 alignItems: "center",
                 padding: "3rem",
-                backgroundColor: "aquamarine"
+                backgroundColor: "darkGrey"
             }}
         >
-            <AppBar style={{ flexDirection: 'row', backgroundColor: "orange",height:'56px', padding: '5px'}}>
+            <AppBar style={{ flexDirection: 'row', backgroundColor: "grey",height:'56px', padding: '5px'}}>
                 <Select
                     labelId="select-label"
                     id="select"
@@ -87,7 +87,7 @@ const Playground: React.FC<Props> = ({ permissions }) => {
                     onClick={() => console.log("Button clicked")}
                     style={{ margin: "1rem" }}
                 >
-                    Submit
+                    Click Me
                 </Button>
             )}
         </div>
