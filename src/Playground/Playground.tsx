@@ -7,13 +7,9 @@ interface Props {
   permissions: {[id:string]:boolean}
 }
 
-const PERMISSIONS: {[id:string]:boolean} = {
-    "canView":true,
-    "canEdit":true,
 
-}
 
-const PermissionManager: React.FC<Props> = ({ permissions }) => {
+const Playground: React.FC<Props> = ({ permissions }) => {
   const [state, setState] = React.useState({
     checked: false,
     selectedValue: "",
@@ -79,4 +75,4 @@ const PermissionManager: React.FC<Props> = ({ permissions }) => {
   );
 };
 
-export default PermissionManager;
+export default Playground;
