@@ -23,8 +23,8 @@ const NewApplicationModal: React.FC<Props> = ({ fetchedSiteUser, setAppList, app
             console.log("WARNING API CALL");
             updateSiteUser(fetchedSiteUser);
 
-            appList.push(app);
-            setAppList(appList);
+            const newAppList = [...appList, app]
+            setAppList(newAppList);
         })
         handleClose();
     };

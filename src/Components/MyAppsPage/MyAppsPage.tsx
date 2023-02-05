@@ -13,8 +13,6 @@ function MyAppPage() {
     const [appList, setAppList] = React.useState<App [] | null>(null);
     const {siteUser} = useAuthContext();
 
-    console.log(appList);
-
     useEffect(() => {
         if (!siteUser) {
             return;
