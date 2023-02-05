@@ -4,9 +4,9 @@ import Banner from './Components/Banner';
 import './App.css';
 import { BrowserRouter } from 'react-router-dom';
 import { Route, Routes } from 'react-router';
-import UsersTable from './Components/UsersTable';
 import AppUser from './Types/AppUser';
 import Role from './Types/Role';
+import UsersTable from './Components/UsersTable';
 
 const dummyUsers: AppUser [] = [
   {
