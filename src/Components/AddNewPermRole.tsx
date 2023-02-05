@@ -14,9 +14,11 @@ type Props = {
     handleSavePerms: () => void
     handleRevertPerms: () => void
     setApp: React.Dispatch<React.SetStateAction<App | null>>
+    setHasUnsaved: React.Dispatch<React.SetStateAction<boolean>>
+    hasUnsaved: boolean
 }
 
-const AddNewPermRole = ({permissions, roles, setPermissions, setRoles, app, setApp, handleSavePerms, handleRevertPerms}: Props) => {
+const AddNewPermRole = ({permissions, roles, setPermissions, setRoles, setHasUnsaved, hasUnsaved, app, setApp, handleSavePerms, handleRevertPerms}: Props) => {
     const [permIsOpen, setPermIsOpen] = React.useState(false);
     const [roleIsOpen, setRoleIsOpen] = React.useState(false);
     const [permissionName, setPermissionName] = React.useState("");
@@ -65,8 +67,8 @@ const AddNewPermRole = ({permissions, roles, setPermissions, setRoles, app, setA
         <>
             <Stack direction="row" justifyContent="space-between">
                 <Stack direction="row" spacing={2}>
-                    <Button variant="contained" onClick={handleSavePerms}>Save</Button>
-                    <Button variant="contained" onClick={handleRevertPerms}>Revert</Button>
+                    <Button variant="contained" onClick={() => {handleSavePerms(); setHasUnsaved(false);}}>Save {hasUnsaved && "*"}</Button>
+                    {/* <Button variant="contained" onClick={handleRevertPerms}>Revert</Button> */}
                 </Stack>
                 <Stack direction="row-reverse" spacing={2}>
                     <Button variant="contained" onClick={() => setPermIsOpen(true)}>New Permission</Button>
@@ -91,7 +93,7 @@ const AddNewPermRole = ({permissions, roles, setPermissions, setRoles, app, setA
                         disabled={!permissionName}
                         onClick={() => handlePermissionSubmit(permissionName)}
                     >
-                        Add
+                        Save
                     </Button>
                 </DialogActions>
             </Dialog>
@@ -113,7 +115,7 @@ const AddNewPermRole = ({permissions, roles, setPermissions, setRoles, app, setA
                         disabled={!roleName}
                         onClick={() => handleRoleSubmit(roleName)}
                     >
-                        Add
+                        Save
                     </Button>
                 </DialogActions>
             </Dialog>

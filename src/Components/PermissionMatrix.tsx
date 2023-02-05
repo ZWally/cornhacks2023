@@ -17,6 +17,7 @@ type Props = {
 
 const PermissionMatrix = ({permissions, roles, setPermissions, setRoles, app, setApp}: Props) => {
     const [unsavedRoles, setUnsavedRoles] = React.useState(roles.map(role => ({...role, permissionIds: [...role.permissionIds]})));
+    const [hasUnsaved, setHasUnsaved] = React.useState(false);
 
     const handleRevertPerms = () => {
         setUnsavedRoles(roles.map(role => ({...role, permissionIds: [...role.permissionIds]})));
@@ -30,8 +31,8 @@ const PermissionMatrix = ({permissions, roles, setPermissions, setRoles, app, se
     
     return (
         <>
-            <AddNewPermRole setApp={setApp} handleRevertPerms={handleRevertPerms} handleSavePerms={handleSavePerms} app={app} permissions={permissions} roles={roles} setPermissions={setPermissions} setRoles={setRoles}/>
-            <MatrixTable setUnsavedRoles={setUnsavedRoles} unsavedRoles={unsavedRoles} permissions={permissions} roles={roles}/>
+            <AddNewPermRole hasUnsaved={hasUnsaved} setHasUnsaved={setHasUnsaved} setApp={setApp} handleRevertPerms={handleRevertPerms} handleSavePerms={handleSavePerms} app={app} permissions={permissions} roles={roles} setPermissions={setPermissions} setRoles={setRoles}/>
+            <MatrixTable setUnsaved={setHasUnsaved} setUnsavedRoles={setUnsavedRoles} unsavedRoles={unsavedRoles} permissions={permissions} roles={roles}/>
         </>
     )
 }

@@ -9,9 +9,10 @@ type Props = {
     roles: Role[]
     unsavedRoles: Role[]
     setUnsavedRoles: React.Dispatch<React.SetStateAction<Role[]>>
+    setUnsaved: React.Dispatch<React.SetStateAction<boolean>>
 }
 
-const MatrixTable = ({permissions, roles, unsavedRoles, setUnsavedRoles}: Props) => {
+const MatrixTable = ({permissions, roles, unsavedRoles, setUnsavedRoles, setUnsaved}: Props) => {
     
     React.useEffect(() => {
         console.log("EFFECT IN PROGRESS");
@@ -41,6 +42,7 @@ const MatrixTable = ({permissions, roles, unsavedRoles, setUnsavedRoles}: Props)
                                     <TableCell>
                                         <Checkbox checked={hasPerm}
                                             onClick={() => {
+                                                setUnsaved(true);
                                                 if (hasPerm) {
                                                     const permIndex = unsavedRoles[roleIndex].permissionIds.findIndex((permId => permId === permission.id));
                                                     let newRoles = [...unsavedRoles]
