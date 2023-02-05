@@ -9,6 +9,7 @@ import UsersTable from './Components/UsersTable';
 import MyAppPage from './Components/MyAppsPage/MyAppsPage';
 import AppPage from './Components/AppPage';
 import { AuthProvider } from './Contexts/Authorization';
+import Playground from './Playground/Playground';
 
 function App() {
   return (
@@ -20,6 +21,7 @@ function App() {
       <Routes>
         <Route path="/" element={<MyAppPage />}/>
         <Route path="/app/:appId" element={<AppPage />}/>
+        <Route path="/playground" element={<Playground />}/>
       </Routes>
         </div>
       </div>

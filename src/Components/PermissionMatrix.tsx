@@ -1,3 +1,4 @@
+import { Paper, TableContainer } from "@mui/material";
 import React from "react";
 import App from "../Types/App";
 import Permission from "../Types/Permission";
@@ -30,10 +31,12 @@ const PermissionMatrix = ({permissions, roles, setPermissions, setRoles, app, se
     }
     
     return (
-        <>
+        <div style={{margin: '20px'}}>
+          <TableContainer component={Paper}>
             <AddNewPermRole hasUnsaved={hasUnsaved} setHasUnsaved={setHasUnsaved} setApp={setApp} handleRevertPerms={handleRevertPerms} handleSavePerms={handleSavePerms} app={app} permissions={permissions} roles={roles} setPermissions={setPermissions} setRoles={setRoles}/>
             <MatrixTable setUnsaved={setHasUnsaved} setUnsavedRoles={setUnsavedRoles} unsavedRoles={unsavedRoles} permissions={permissions} roles={roles}/>
-        </>
+          </TableContainer>
+        </div>
     )
 }
 

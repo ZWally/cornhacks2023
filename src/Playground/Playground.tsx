@@ -5,21 +5,7 @@ import AddIcon from "@mui/icons-material/Add";
 import { getAppById, getAppUsersById } from "../utils/database";
 import AppUser from "../Types/AppUser";
 
-const PERMISSIONS: string[] = [
-  "canSeeCorn",
-  "canViewForm",
-  "canViewPlusButton",
-  "canClickPlusButton",
-  "canEditDropDown",
-  "canViewTextEntry",
-  "canEditTextEntry",
-  "canViewCheckBox",
-  "canEditCheckBox",
-  'canViewSubmitButton',
-  'canClickSubmit',
-]
-
-const APP_ID = 'oijwf092309j203f';
+const APP_ID = 'MSTqc0H4pI9zSzaJbbUh';
 
 const Playground: React.FC = () => {
     const [userPermissions, setUserPermissions] = React.useState<string []>([])
@@ -37,7 +23,7 @@ const Playground: React.FC = () => {
     }, [])
 
     React.useEffect(() => {
-      if (currentUser) {
+      if (currentUser !== undefined) {
         setLoaded(false);
         fetch('https://us-central1-cornhax2023.cloudfunctions.net/getUserPermissions?userId=' + currentUser.id).then(data => data.json()).then(res => {
           setUserPermissions(res);
@@ -55,34 +41,27 @@ const Playground: React.FC = () => {
     }
 
     return (
-        <div
+      <>
+        { loaded && <div
             style={{
                 display: "flex",
                 flexDirection: "column",
                 alignItems: "center",
                 padding: "3rem",
-                backgroundColor: "darkGrey"
             }}
         >
-            <AppBar style={{ flexDirection: 'row', backgroundColor: "grey",height:'56px', padding: '5px'}}>
+            <AppBar style={{ flexDirection: 'row', backgroundColor: "grey",height:'70px', padding: '5px', alignItems: 'center'}}>
                 <Select
                     labelId="select-label"
                     id="select"
                     value={currentUser?.authId}
                     onChange={e => setCurrentUser(getAppUserFromName(e.target.value))}
-                    style={{height:"40px",marginTop:'3px'}}
+                    style={{height:"40px",marginLeft:'10px', backgroundColor: 'white'}}
                 >
                   { userList.map(appUser => <MenuItem value={appUser.authId}>{appUser.authId}</MenuItem>)}
                 </Select>
-                <Button
-                    variant="contained"
-                    color="primary"
-                    style={{height:"40px",marginTop:'3px'}}
-                >
-                    Update
-                </Button>
             </AppBar>
-            <img src={corn} height='120px' hidden={!userPermissions.includes("canSeeCorn")} style={{margin: "1rem"}}></img>
+            <img src={corn} height='120px' hidden={!userPermissions.includes("canSeeCorn")} style={{margin: "1rem", marginTop: '50px'}}></img>
             {userPermissions.includes("canViewPlusButton") && (
                 <FormControl>
                     <Fab color="primary" aria-label="add" disabled={!userPermissions.includes("canClickPlusButton")}>
@@ -116,8 +95,10 @@ const Playground: React.FC = () => {
                     Click Me
                 </Button>
             )}
-        </div>
+        </div> }
+      </>
     );
+    
 };
 
 export default Playground;

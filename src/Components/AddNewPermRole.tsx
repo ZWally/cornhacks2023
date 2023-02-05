@@ -64,7 +64,7 @@ const AddNewPermRole = ({permissions, roles, setPermissions, setRoles, setHasUns
     }
     
     return (
-        <>
+        <div style={{margin:"15px"}}>
             <Stack direction="row" justifyContent="space-between">
                 <Stack direction="row" spacing={2}>
                     <Button variant="contained" onClick={() => {handleSavePerms(); setHasUnsaved(false);}}>Save {hasUnsaved && "*"}</Button>
@@ -119,7 +119,7 @@ const AddNewPermRole = ({permissions, roles, setPermissions, setRoles, setHasUns
                     </Button>
                 </DialogActions>
             </Dialog>
-        </>
+        </div>
     );
 }
 

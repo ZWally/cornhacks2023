@@ -2,13 +2,15 @@ import React from 'react';
 import { AppBar, Toolbar, Typography, IconButton } from '@mui/material';
 import { AccountCircle, Home } from '@mui/icons-material';
 import { useAuthContext } from '../Contexts/Authorization';
-import { Link } from 'react-router-dom';
+import { Link, useLocation } from 'react-router-dom';
 
 const Banner: React.FC = () => {
   const { firebaseUser, siteUser } = useAuthContext();
+  const location = useLocation();
 
   return (
-    <AppBar position="static">
+    <>
+    { location.pathname !== '/playground' && <AppBar position="static">
       <Toolbar>
         <Link to='/' style={{textDecoration: 'none', color: 'white'}}>
           <IconButton edge="start" color="inherit" aria-label="menu">
@@ -26,7 +28,8 @@ const Banner: React.FC = () => {
           <AccountCircle />
         </IconButton>
       </Toolbar>
-    </AppBar>
+    </AppBar> }
+    </>
   );
 };
 

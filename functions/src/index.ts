@@ -16,6 +16,7 @@ exports.initSiteUserDoc = functions.auth.user().onCreate((user) => {
 })
 
 exports.getUserPermissions = functions.https.onRequest((req, res) => {
+  res.set('Access-Control-Allow-Origin', '*');
   const userId = req.query.userId as string;
   
   admin.firestore().collection('appUsers').doc(userId).get().then(docRef => {

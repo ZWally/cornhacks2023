@@ -149,7 +149,7 @@ export default function UsersTable({users, roles, setUsers, app}: UsersTableProp
               <TableCell component="th" scope="row">
                 {user.authId}
               </TableCell>
-              <TableCell style={{ width: 160 }} align="right">
+              <TableCell>
                 {user.role}
               </TableCell>
               <TableCell>
