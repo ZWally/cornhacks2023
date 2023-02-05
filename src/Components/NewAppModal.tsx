@@ -7,6 +7,7 @@ import SiteUser from '../Types/SiteUser';
 
 interface Props {
     fetchedSiteUser: SiteUser,
+    setApps: (apps: any) => void,
     
 }
 
@@ -20,6 +21,7 @@ const NewApplicationModal: React.FC<Props> = ({ fetchedSiteUser }) => {
         newApp.then(app => {
             fetchedSiteUser.appIds.push(app.id);
             updateSiteUser(fetchedSiteUser);
+            
             console.log("hit");
         })
         handleClose();

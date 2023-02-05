@@ -30,7 +30,7 @@ function MyAppPage() {
             <TitleHeader />
             {loaded && appList ? <CardLayout appList={appList} /> : <></>}
             <footer style={{ textAlign: "right", marginRight: '18px', maxHeight: '18px' }}>
-                <NewApplicationModal setApps={handleAdd} />
+                <NewApplicationModal setApps={handleAdd} fetchedSiteUser= {fetchedSiteUser}/>
             </footer>
         </div>
     );
