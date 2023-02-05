@@ -40,8 +40,14 @@ const AddNewPermRole = ({permissions, roles, setPermissions, setRoles, app}: Pro
 
     }
 
-    const handleRoleSubmit = (permissionName: string) => {
-
+    const handleRoleSubmit = (roleName: string) => {
+        console.log("WARNING API CALL");
+        createRole(roleName, []).then(newRole => {
+            setRoles([...roles, newRole]);
+            
+            console.log("WARNING API CALL");
+            updateApp({...app, roleIds: [...app.roleIds, newRole.id]})
+        })
     }
     
     return (
