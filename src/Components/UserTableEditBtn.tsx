@@ -31,6 +31,11 @@ const UserTableEditBtn = ({user, roles, setUsers, oldUsers}: Props) => {
   const handleOpen = () => setOpen(true);
   const handleClose = () => setOpen(false);
   const [value, setValue] = React.useState<null | string>(user.role);
+  console.log("USER ROLE IN BTN", user.role)
+
+  React.useEffect(() => {
+
+  }, [user])
     
     return (
         <>
@@ -54,15 +59,17 @@ const UserTableEditBtn = ({user, roles, setUsers, oldUsers}: Props) => {
             />
             <Button onClick={(_) => setOpen(false)}>Cancel</Button>
             <Button
-            disabled={value === null || value === user.role}
+            disabled={value === null || value === user.role || value === "None"}
              onClick={
                 (_) => {
                     if (value !== null) { 
                         const newRoleId = getIdFromRole(roles, value)?.id || "error";
-                        updateAppUser({...user, roleId: newRoleId}).then(() => {
+                        updateAppUser({id: user.id, authId: user.authId, roleId: newRoleId}).then(() => {
                         const indexOfUpdatedUser = oldUsers.findIndex(oldUser => oldUser.id === user.id);
-                        oldUsers[indexOfUpdatedUser].roleId = newRoleId;
-                        setUsers(oldUsers)
+                        let newUsers = [...oldUsers]
+                        newUsers[indexOfUpdatedUser].roleId = newRoleId;
+                        setUsers(newUsers)
+                        console.log(newUsers);
                         // TODO TEST
                     });
                     }
