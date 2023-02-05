@@ -5,6 +5,7 @@ import * as React from 'react';
 import Typography from '@mui/material/Typography';
 import Box from '@mui/material/Box';
 import { Button, CardActionArea, CardActions, } from '@mui/material';
+import { Link } from 'react-router-dom';
 
 type Props = {
   appList: App [];
@@ -13,6 +14,7 @@ type Props = {
 const appToCard = function (app: App) {
     return(
         <Grid item>
+            <Link to={`/app/${app.id}`} style={{textDecoration: "none"}}>
             <Card sx={{ minWidth: 275 }}>
                 <CardContent>
                     <Typography variant="h4" component="div" mb={5}>
@@ -23,6 +25,7 @@ const appToCard = function (app: App) {
                     </Typography>
                 </CardContent>
             </Card>
+            </Link>
         </Grid>
     );
 };
