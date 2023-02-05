@@ -70,7 +70,7 @@ function TablePaginationActions(props: TablePaginationActionsProps) {
   );
 }
 
-type AppUserRow = {
+export type AppUserRow = {
   id: string
   role: string
   authId: string
@@ -82,7 +82,7 @@ type UsersTableProps = {
   roles: Role []
 }
 
-const roleFromId = (roles: Role[], roleId: string) => roles.find(role => role.id === roleId);
+export const roleFromId = (roles: Role[], roleId: string) => roles.find(role => role.id === roleId);
 
 const userToRow = (roles: Role[], user: AppUser) => {
   return ({
@@ -138,7 +138,7 @@ export default function UsersTable({users, roles}: UsersTableProps) {
                 {user.role}
               </TableCell>
               <TableCell>
-                <UserTableEditBtn user={{...user}}/>
+                <UserTableEditBtn user={user} roles={roles}/>
               </TableCell>
             </TableRow>
           ))}
