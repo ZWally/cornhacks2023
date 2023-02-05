@@ -6,12 +6,10 @@ import { BrowserRouter } from 'react-router-dom';
 import { Route, Routes } from 'react-router';
 import AppUser from './Types/AppUser';
 import NewApplicationModal from './Components/NewAppModal';
-import App from './Types/App';
 import { Console } from 'console';
 
-const handleAdd = (name: string, description: string) => {
-  console.log(name +', '+ description);
-  return ;
+const handleAdd = (apps:any) => {
+  //TODO: THE STUFF
 };
 
 
@@ -19,7 +17,7 @@ const handleAdd = (name: string, description: string) => {
 function App() {
   return (
     <BrowserRouter>
-    <NewApplicationModal  setApps={}/>
+    <NewApplicationModal  setApps={handleAdd}/>
       <Routes>
         <Route path="/" element={<div>homepage - myapps</div>}/>
         <Route path="/app/:appId" element={<div>app page</div>}/>
