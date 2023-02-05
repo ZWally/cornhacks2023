@@ -13,7 +13,7 @@ const handleAdd = (apps: any) => {
 };
 function MyAppPage() {
     const [siteUser, setSiteUser] = React.useState<SiteUser | null>(null);
-    const [appList, setAppList] = React.useState<App [] | null>(null);
+    const [appList, setAppList] = React.useState<App[] | null>(null);
     const [loaded, setLoaded] = React.useState(false);
 
     useEffect(() => {
@@ -25,15 +25,12 @@ function MyAppPage() {
 
     })
 
-    
+
 
     return (
         <div>
-
             <TitleHeader />
-            {loaded && appList? <CardLayout appList={appList}/> : <></>}
-            
-
+            {loaded && appList ? <CardLayout appList={appList} /> : <></>}
             <footer style={{ textAlign: "right", marginRight: '18px', maxHeight: '18px' }}>
                 <NewApplicationModal setApps={handleAdd} />
             </footer>
