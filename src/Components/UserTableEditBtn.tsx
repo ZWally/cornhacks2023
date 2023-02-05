@@ -9,6 +9,7 @@ type Props = {
     user: AppUserRow
     roles: Role []
     setUsers: React.Dispatch<React.SetStateAction<AppUser[] | null>>
+    oldUsers: AppUser []
 }
 
 const style = {
@@ -25,7 +26,7 @@ const style = {
 
 const getIdFromRole = (roles: Role [], roleName: string) => roles.find(role => role.name === roleName);
 
-const UserTableEditBtn = ({user, roles, setUsers}: Props) => {
+const UserTableEditBtn = ({user, roles, setUsers, oldUsers}: Props) => {
     const [open, setOpen] = React.useState(false);
   const handleOpen = () => setOpen(true);
   const handleClose = () => setOpen(false);
@@ -57,11 +58,13 @@ const UserTableEditBtn = ({user, roles, setUsers}: Props) => {
              onClick={
                 (_) => {
                     if (value !== null) { 
-                        updateAppUser({...user, roleId: getIdFromRole(roles, value)?.id || "error"}).then(() => {
+                        const newRoleId = getIdFromRole(roles, value)?.id || "error";
+                        updateAppUser({...user, roleId: newRoleId}).then(() => {
+                        const indexOfUpdatedUser = oldUsers.findIndex(oldUser => oldUser.id === user.id);
+                        oldUsers[indexOfUpdatedUser].roleId = newRoleId;
+                        setUsers(oldUsers)
+                        // TODO TEST
                     });
-                    }
-                    if (value === null) {
-                        console.log()
                     }
                     setOpen(false);
             }
