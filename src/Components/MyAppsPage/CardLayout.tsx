@@ -14,12 +14,8 @@ type Props = {
 const appToCard = function (app: App) {
     return(
         <Grid item>
-<<<<<<< HEAD
             <Link to={`/app/${app.id}`} style={{textDecoration: "none"}}>
             <Card sx={{ minWidth: 275 }}>
-=======
-            <Card sx={{ minWidth: 275 , maxWidth:275, minHeight:200,maxHeight:200}}>
->>>>>>> origin/NewAppModal
                 <CardContent>
                     <Typography variant="h4" component="div" mb={5}>
                     {app.name}
