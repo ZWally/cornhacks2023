@@ -2,6 +2,7 @@ import { Box, IconButton, Paper, Table, TableBody, TableCell, TableContainer, Ta
 import { FirstPage, LastPage, KeyboardArrowRight, KeyboardArrowLeft } from "@mui/icons-material"
 import AppUser from "../Types/AppUser";
 import React from "react";
+import UserTableEditBtn from "./UserTableEditBtn";
 
 type TablePaginationActionsProps = {
   count: number;
@@ -117,6 +118,7 @@ export default function UsersTable({users}: UsersTableProps) {
           <TableRow>
             <TableCell>Name</TableCell>
             <TableCell>Role</TableCell>
+            <TableCell>Edit</TableCell>
           </TableRow>
         </TableHead>
         <TableBody>
@@ -130,6 +132,9 @@ export default function UsersTable({users}: UsersTableProps) {
               </TableCell>
               <TableCell style={{ width: 160 }} align="right">
                 {user.role}
+              </TableCell>
+              <TableCell>
+                <UserTableEditBtn user={}/>
               </TableCell>
             </TableRow>
           ))}
