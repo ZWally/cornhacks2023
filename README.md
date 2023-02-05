@@ -1,46 +1,19 @@
-# Getting Started with Create React App
+# AccessGenie
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+AccessGenie is a permission management service that helps clients build and maintain applications with fully customizable roles and permissions. With our creative new approach, apps can retrieve secure user permissions with a simple API call. Then, through our web application, the development team or project manager can manage existing roles, add team members, and create new roles with different permissions, all without changing a single line of code.
 
-## Available Scripts
+## The Problem
 
-In the project directory, you can run:
+Suppose your company, like many others, has numerous internal tools; most of which contain sensitive information or safety-critical features that require granular levels of access. A one-size-fits all admin role won’t be adequate, and hard-coding more specific roles into each app is incredibly time (and resource) consuming, especially once an application has entered a longer-term maintenance period, where major modifications can have expensive consequences.
 
-### `npm start`
+AccessGenie allows developers to abstract this role creation process by acting as a centralized source of truth for granular permission management. AccessGenie’s API will return a list of boolean permissions for a given user id. Developers can then do with this list as they please to implement route restriction or any other kind of privacy protection. AccessGenie empowers developers to truly embody information security’s [Principle of Least Privilege](https://en.wikipedia.org/wiki/Principle_of_least_privilege).
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+## Creating an App
 
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
+AccessGenie is designed to aid in the app development process. To begin, simply click the ‘+’ icon on the Applications page. After giving the application a title and a brief description, it can be accessed directly from the dashboard. From there, one can add custom roles and permissions or manage their team members. Thus, before development even begins, AccessGenie incentivizes thoughtful consideration of permissions and user access requirements, which is essential to building robust, secure applications, designed to withstand cyberthreats and critical system failures.
 
-### `npm test`
+## Accessing Permissions
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+To obtain permissions for use in your app, AcessGenie provides an API endpoint that supplies a list of permissions held by the desired user. Simply send a GET request to the following end point using a user-specific API token as the `userId` parameter.
 
-### `npm run build`
-
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
-
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
-
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
-
-### `npm run eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
-
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
-
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
+```https://us-central1-cornhax2023.cloudfunctions.net/getUserPermissions?userId=<userToken>```
