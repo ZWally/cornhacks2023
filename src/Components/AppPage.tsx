@@ -40,9 +40,9 @@ const AppPage = () => {
     
     return (
         <div>
-            <Typography>{app?.name}</Typography>
+            <Typography variant='h2' ml={2} mb={1}>{app?.name}</Typography>
             <TabsContainer
-                usersComponent={<UsersTable setUsers={setUsers} users={users || []} roles={roles || []} />}
+                usersComponent={app && <UsersTable app={app} setUsers={setUsers} users={users || []} roles={roles || []} />}
                 permissionsComponent={<></>}
             />
         </div>

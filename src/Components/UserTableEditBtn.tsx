@@ -24,7 +24,7 @@ const style = {
   p: 4,
 };
 
-const getIdFromRole = (roles: Role [], roleName: string) => roles.find(role => role.name === roleName);
+export const getIdFromRole = (roles: Role [], roleName: string) => roles.find(role => role.name === roleName);
 
 const UserTableEditBtn = ({user, roles, setUsers, oldUsers}: Props) => {
     const [open, setOpen] = React.useState(false);
