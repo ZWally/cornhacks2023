@@ -36,7 +36,7 @@ const CardLayout: React.FC<Props> = ({ appList }) => {
         spacing={2}
         container={true}
         direction="row"
-        justifyContent="space-between"
+        justifyContent="center"
         alignItems="flex-start">
             {appList.map(appToCard)}
         </Grid>
