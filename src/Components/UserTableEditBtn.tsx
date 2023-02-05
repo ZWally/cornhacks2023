@@ -32,6 +32,10 @@ const UserTableEditBtn = ({user, roles, setUsers, oldUsers}: Props) => {
   const handleClose = () => setOpen(false);
   const [value, setValue] = React.useState<null | string>(user.role);
   console.log("USER ROLE IN BTN", user.role)
+
+  React.useEffect(() => {
+
+  }, [user])
     
     return (
         <>
@@ -55,7 +59,7 @@ const UserTableEditBtn = ({user, roles, setUsers, oldUsers}: Props) => {
             />
             <Button onClick={(_) => setOpen(false)}>Cancel</Button>
             <Button
-            disabled={value === null || value === user.role}
+            disabled={value === null || value === user.role || value === "None"}
              onClick={
                 (_) => {
                     if (value !== null) { 
