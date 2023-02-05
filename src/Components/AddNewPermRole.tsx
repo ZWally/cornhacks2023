@@ -38,6 +38,7 @@ const AddNewPermRole = ({permissions, roles, setPermissions, setRoles, app}: Pro
             updateApp({...app, permissionIds: [...app.permissionIds, newPermission.id]})
         })
 
+        handlePermissionClose();
     }
 
     const handleRoleSubmit = (roleName: string) => {
@@ -48,6 +49,8 @@ const AddNewPermRole = ({permissions, roles, setPermissions, setRoles, app}: Pro
             console.log("WARNING API CALL");
             updateApp({...app, roleIds: [...app.roleIds, newRole.id]})
         })
+
+        handleRoleClose();
     }
     
     return (
@@ -94,7 +97,7 @@ const AddNewPermRole = ({permissions, roles, setPermissions, setRoles, app}: Pro
                     <Button onClick={handleRoleClose}>Cancel</Button>
                     <Button
                         disabled={!roleName}
-                        onClick={() => handleRoleSubmit(permissionName)}
+                        onClick={() => handleRoleSubmit(roleName)}
                     >
                         Add
                     </Button>
