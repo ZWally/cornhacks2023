@@ -4,8 +4,8 @@ import Banner from './Components/Banner';
 import './App.css';
 import { BrowserRouter } from 'react-router-dom';
 import { Route, Routes } from 'react-router';
-import UsersTable from './Components/UsersTable';
 import AppUser from './Types/AppUser';
+import TabsContainer from './Components/TabContainer';
 
 const dummyUsers: AppUser [] = [
   {
@@ -33,7 +33,7 @@ const dummyUsers: AppUser [] = [
 function App() {
   return (
     <>
-    <UsersTable users={dummyUsers}/>
+    <TabsContainer></TabsContainer>
     <BrowserRouter>
       <Routes>
         <Route path="/" element={<div>homepage - myapps</div>}/>

@@ -1,5 +1,4 @@
 import React from 'react';
-import { makeStyles, Theme, createStyles } from '@mui/material';
 import { Card, CardContent, Tabs, Tab } from '@mui/material';
 
 enum TabOption {
@@ -7,26 +6,8 @@ enum TabOption {
   PERMISSIONS,
 }
 
-const useStyles = makeStyles((theme: Theme) =>
-  createStyles({
-    rootContainer: {
-      display: 'flex',
-      justifyContent: 'center',
-      width: '100%',
-    },
-    cardContainer: {
-      width: '95%',
-      marginTop: '10px',
-    },
-    tabLabel: {
-      fontSize: theme.typography.pxToRem(20),
-    },
-  }),
-);
 
 const TabsContainer: React.FC = () => {
-  // TODO useStyle has error
-  const classes = useStyles();
   const [selectedTab, setSelectedTab] = React.useState(TabOption.USERS);
 
   const handleTabChange = (event: React.ChangeEvent<{}>, newValue: TabOption) => {
@@ -34,11 +15,16 @@ const TabsContainer: React.FC = () => {
   };
 
   return (
-    <div className={classes.rootContainer}>
-      <Card className={classes.cardContainer}>
+    <div style={{display: 'flex',
+    justifyContent: 'center',
+    width: '100%',}}>
+      <Card style={{
+      width: '95%',
+      marginTop: '10px',
+      }}>
         <Tabs value={selectedTab} onChange={handleTabChange}>
-          <Tab label="Users" value={TabOption.USERS} className={classes.tabLabel} />
-          <Tab label="Permissions" value={TabOption.PERMISSIONS} className={classes.tabLabel} />
+          <Tab label="Users" value={TabOption.USERS} style={{fontSize: '20px'}} />
+          <Tab label="Permissions" value={TabOption.PERMISSIONS} style={{fontSize: '20px'}} />
         </Tabs>
         <CardContent>
           {selectedTab === TabOption.USERS ? (
