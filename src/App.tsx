@@ -16,8 +16,6 @@ function App() {
       <Routes>
         <Route path="/" element={<MyAppPage />}/>
         <Route path="/app/:appId" element={<AppPage />}/>
-        <Route path="/app/:appId/permissions" element={<div>app page - permissions tab</div>}/>
-        <Route path="/app/:appId/users" element={<div>app page - users tab</div>}/>
       </Routes>
     </BrowserRouter>
   );

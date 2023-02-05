@@ -1,7 +1,9 @@
 import { useParams } from 'react-router-dom'
 import { getAppById } from '../utils/database';
+import {Typography} from "@mui/material"
 import React, { useEffect } from 'react';
 import App from '../Types/App';
+import TabsContainer from './TabContainer';
 
 const AppPage = () => {
     const { appId } = useParams<{appId: string}>();
@@ -20,7 +22,13 @@ const AppPage = () => {
     }, [appId])
     
     return (
-        <div>{app?.name}</div>
+        <div>
+            <Typography>{app?.name}</Typography>
+            <TabsContainer
+                usersComponent={<></>}
+                permissionsComponent={<></>}
+            />
+        </div>
     )
 }
 
