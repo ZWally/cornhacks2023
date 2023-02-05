@@ -2,51 +2,30 @@ import App from "../../Types/App";
 import CardLayout from "./CardLayout";
 import FloatingAddButton from "./FloatingAddButton";
 import TitleHeader from "./TitleHeader";
-
-// DUMMY DATA, REPLACE WITH REAL
-const dummyApp1: App = {
-    id: "1",
-    userIds: ["1", "2", "3"],
-    roleIds: ["Manager", "Editor", "Viewer"],
-    permissionIds: ["canViewDB", "canEditDB", "canDeleteDB"],
-    name: "floopGuy",
-    description: "They floop Guys"
-};
-
-const dummyApp2: App = {
-    id: "2",
-    userIds: ["1", "2", "3"],
-    roleIds: ["Manager", "Editor", "Viewer"],
-    permissionIds: ["canViewDB", "canEditDB", "canDeleteDB"],
-    name: "floopGuy",
-    description: "They floop Guys"
-};
-
-const dummyApp3: App = {
-    id: "3",
-    userIds: ["1", "2", "3"],
-    roleIds: ["Manager", "Editor", "Viewer"],
-    permissionIds: ["canViewDB", "canEditDB", "canDeleteDB"],
-    name: "floopGuy",
-    description: "They floop Guys"
-};
-
-const dummyApp4: App = {
-    id: "3",
-    userIds: ["1", "2", "3"],
-    roleIds: ["Manager", "Editor", "Viewer"],
-    permissionIds: ["canViewDB", "canEditDB", "canDeleteDB"],
-    name: "floopGuy",
-    description: "They floop Guys"
-};
-
-const dummyAppsList: App [] = [dummyApp1, dummyApp2, dummyApp3, dummyApp4];
+import { getSiteUserById, getAppsById } from "../../utils/database";
+import SiteUser from "../../Types/SiteUser";
+import React, { useEffect } from "react";
 
 function MyAppPage() {
+    const [siteUser, setSiteUser] = React.useState<SiteUser | null>(null);
+    const [appList, setAppList] = React.useState<App [] | null>(null);
+    const [loaded, setLoaded] = React.useState(false);
+
+    useEffect(() => {
+        getSiteUserById('testUser').then(async fetchedSiteUser => {
+            setSiteUser(fetchedSiteUser);
+            setAppList(await getAppsById(fetchedSiteUser.appIds));
+            setLoaded(true);
+        });
+
+    })
+
+    
+
     return (
         <div>
             <TitleHeader />
-            <CardLayout appList={dummyAppsList}/>
+            {loaded && appList? <CardLayout appList={appList}/> : <></>}
             <footer>
                 <FloatingAddButton />
             </footer>
