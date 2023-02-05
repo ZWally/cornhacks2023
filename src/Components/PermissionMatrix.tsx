@@ -1,6 +1,7 @@
 import Permission from "../Types/Permission";
 import Role from "../Types/Role";
 import {updateApp, createPermission, createRole} from "../utils/database"
+import AddNewPermRole from "./AddNewPermRole";
 
 type Props = {
     permissions: Permission[]
@@ -11,7 +12,7 @@ type Props = {
 
 const PermissionMatrix = ({permissions, roles, setPermissions, setRoles}: Props) => {
     return (
-        <></>
+        <AddNewPermRole permissions={permissions} roles={roles} setPermissions={setPermissions} setRoles={setRoles}/>
     )
 }
 
