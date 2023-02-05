@@ -3,6 +3,7 @@ import React from "react"
 import { AppUserRow, roleFromId } from "./UsersTable"
 import Role from "../Types/Role"
 import { updateAppUser } from "../utils/database"
+import AppUser from "../Types/AppUser"
 
 type Props = {
     user: AppUserRow
@@ -55,7 +56,8 @@ const UserTableEditBtn = ({user, roles}: Props) => {
              onClick={
                 (_) => {
                     if (value !== null) { 
-                        updateAppUser({...user, roleId: getIdFromRole(roles, value)?.id || "error"});
+                        updateAppUser({...user, roleId: getIdFromRole(roles, value)?.id || "error"}).then(() => {
+                    });
                     }
                     if (value === null) {
                         console.log()
